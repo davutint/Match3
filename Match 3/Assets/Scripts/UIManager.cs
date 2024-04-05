@@ -70,10 +70,11 @@ public class UIManager : MonoBehaviour
 		Application.Quit();
 	}
 
-	public void GoToLevelSelect()
-	{
+	
+	public void LoadLevel(string level)
+	{	
 		Time.timeScale = 1f;
-		SceneManager.LoadScene(LevelSelect);
+		SceneManager.LoadScene(level);
 	}
 
 	public void TryAgain()
