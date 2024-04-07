@@ -330,6 +330,12 @@ public  class Board : MonoBehaviour
 		//switc case ile scene'in case durumlarını tespit edip hangi sahne de hangi yüksek skor tutulacağına bu şekilde bakacağız
 	}
 	
+	private void SetHighScoreForDataBase(int newHighScore,int level)
+	{
+		//burada newHighScore yeni yüksek skore olmalı ancak seçilen levelde ----SetHighScoreForDataBase(150,1) gibi
+		//ben bunu switch case ile yapacağım için switch kısmında leveli kontrol edeceğim ve case 1 yani level1'in yüksek skorunu bu şekilde ayarlamış olacağım
+	}
+	
 	
 	
 	

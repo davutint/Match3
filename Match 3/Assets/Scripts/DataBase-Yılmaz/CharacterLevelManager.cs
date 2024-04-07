@@ -18,8 +18,9 @@ public class CharacterLevelManager : MonoBehaviour
 	{
 		SetCharacterLevel();
 	}
-   public void SetCharacterLevel()
+   public void SetCharacterLevel()// FİREBASE LEVEL BURADAN ALINMALI
    {
+		//Firebaseden Level i almalıyız, bir local değişkenin içine alınabilir
 		_sliderText.SetText(currentXp+"/"+needenXp);
    }
    
@@ -40,6 +41,8 @@ public class CharacterLevelManager : MonoBehaviour
 		currentXp+=scoreValue/100;
 		//sldier artmalı
    }
+   
+
    
    
 }

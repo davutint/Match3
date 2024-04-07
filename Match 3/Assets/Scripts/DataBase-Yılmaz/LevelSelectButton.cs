@@ -27,24 +27,7 @@ public class LevelSelectButton : MonoBehaviour
 	
 	void Start()
 	{
-		/*star1.SetActive(false);
-		star2.SetActive(false);
-		star3.SetActive(false);
-
-		if(PlayerPrefs.HasKey(levelToLoad + "_Star1"))
-		{
-			star1.SetActive(true);
-		}
-
-		if (PlayerPrefs.HasKey(levelToLoad + "_Star2"))
-		{
-			star2.SetActive(true);
-		}
-
-		if (PlayerPrefs.HasKey(levelToLoad + "_Star3"))
-		{
-			star3.SetActive(true);
-		}*/
+		
 		
 		CheckTheLevelUnlocks();
 	}
@@ -55,16 +38,13 @@ public class LevelSelectButton : MonoBehaviour
 		SceneManager.LoadScene(levelToLoad);
 	}
 	
-	private void GetTheLevelHighScore()
-	{
-		//firebaseden levelin highscoru çekilmeli ve playerprefsa kaydedilmeli
-	}
+	
 	
 	private void CheckTheLevelUnlocks()
 	{
 		//Startta leveli açmaya skorun yetip yetmediğinin kontrolü sağlanmalı
 		//ancak level1 highscore sadece level2'yi açar ve level2'nin highscoru sadece level3 ü açmaya yarar, eğer level2'yi oynamazsan ne kadar yüksek skor yaparsan yap level3'ü açamazsın
-		int level1HS=_level1HS;
+		int level1HS=_level1HS;//bunların hepsinin karşınında o levelin yüksek skoru olmalı yani ---- int level1HS= Databasedeki level1 yüksek skor olmalı level2 level3 diye diğerleride databasedeki ile eşit olmalı
 		int level2HS=_level2HS;
 		int level3HS=_level3HS;
 		int level4HS=_level4HS;

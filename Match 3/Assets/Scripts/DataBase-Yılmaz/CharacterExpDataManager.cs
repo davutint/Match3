@@ -9,6 +9,7 @@ public class CharacterExpDataManager : MonoBehaviour
 	private int experience;
 	private int requiredExperience;
 	
+	
 	public void IncreaseExp()
 	{
 		//bunu event şeklinde boarddan çağırıp exp arttıracağım
@@ -16,11 +17,16 @@ public class CharacterExpDataManager : MonoBehaviour
 	
 	public void LevelUp()
 	{
-		level++;
+		level++; //BURADA DA ++ OLAN LEVELİ FİREBASE E YOLLAMAK GEREKİYOR
 		CalculateRequiredExp();
 	}
 	
-	public void CalculateRequiredExp()//leveli int olarak firebasede tutup çekmek gerekiyor bu sayede minimum düzeyde efor harcamış oluruz
+	public void SetFireBaseLevelUp(int level)
+	{
+		//SEN SADECE BURADA FİREBASE E LEVEL KISMINI YÜKLEMEMİ SAĞLA, BUNU LEVEL UP KISMINDA ÇAĞIRICAM
+	}
+	
+	public void CalculateRequiredExp()//KARAKTER LEVELİNİ BURADA ÇEKMEM GEREKİYOR GEREKLİ XP DEĞERİNİ BUNA GÖRE AYARLIYORUM
 	{
 		requiredExperience=levelConfigSO.GetRequiredExp(level);
 		

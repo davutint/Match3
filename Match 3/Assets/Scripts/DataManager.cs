@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
+	public static DataManager instance;
 	[SerializeField]private int _totalScore;
 	[SerializeField]private string _playerName;
 	[SerializeField]private int _level1Score;
@@ -12,49 +13,40 @@ public class DataManager : MonoBehaviour
 	[SerializeField]private int _level4Score;
 	[SerializeField]private int _level5Score;
 	
-	private string level1P="Level1HighScore";
-	private string level2P="Level2HighScore";
-	private string level3P="Level3HighScore";
-	private string level4P="Level4HighScore";
-	private string level5P="Level5HighScore";
 	
-	private string totalScore="TotalScore";
-	
-	private void Start()
+	private void Awake()
 	{
-		CheckScores();
-	}
-	public void SendScoresToServer()
+		if (instance==null)
+		{
+			instance=this;
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+	}	
+	
+	public void SendHighScoresToServer(int newHighScore,int level)//string levelde olabilir bilmiyorum firebasede hangi türde tutuluyor
 	{
 		//Her levelin yüksek skorunu ilk oturum olacağı için playerprefsde kontrolü sağlayacağım
 		//bu level1 vs bunlar her levelin yüksek skorları olacaklar, her levelde oyuncu daha önce kaç puan aldığını görebilsin diye
 		
 	}
 	
-	
-	public void CalculateScoreToLevel()
+	public string PlayerName()//eğer oluru varsa aynı şekilde player ismi
 	{
-		//burayı ui eklemedem önce yaptım
-		//Firebasede level ayarlama varsa total scora göre level verebiliriz yoksa boşver
+		string name="Davut";
+		return name;
 	}
 	
 	
-	private void CheckScores()
+	
+	public int CheckScoreForLevels(int level)
 	{
-		_level1Score=PlayerPrefs.GetInt(level1P);
-		_level2Score=PlayerPrefs.GetInt(level2P);
-		_level3Score=PlayerPrefs.GetInt(level3P);
-		_level4Score=PlayerPrefs.GetInt(level4P);
-		_level5Score=PlayerPrefs.GetInt(level5P);
+		//Eğer levele göre yüksek skoru kontrol edebileceğim bir sistem olursa iyi olur olmazsa kafana göre
+		//bunu level unlockta kullanırım
+		int level1234Score=1;
+		return level1234Score;
 	}
 	
-	private void GetHighScoresFromServer()
-	{
-		//firebaseden bu levellerin yüksek skorlarını almalı ve bunları playerprefs olarak tutmalıyım, level sahnelerinde anlık kontrolü böyle sağlarım,
-		//levele ait yüksek skore kontrolü fonksiyonuna bir fonksiyon daha eklenmeli ve o anki yüksek skore o anda firebase yollanmalı
-		
-		//local değişkenlere serverdeki skoreları atayıp bu local değerleri playerprefse atmalısın
-		//yukarda ihtiyacın olan string keyler var
-		
-	}
 }
