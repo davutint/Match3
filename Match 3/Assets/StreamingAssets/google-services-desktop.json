@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "291580415155-3froo16eh69r0vui5nr3ors965cbr681.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.PixiCorp.Match3",
+            "certificate_hash": "2ecb458d504a400bf0eb311b3c3c3b525ec030aa"
+          }
+        },
+        {
           "client_id": "291580415155-2knvgd714vviff2p92nero31393hqq6l.apps.googleusercontent.com",
           "client_type": 3
         }

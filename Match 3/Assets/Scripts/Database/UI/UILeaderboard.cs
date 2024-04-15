@@ -7,8 +7,8 @@ public class UILeaderboard : MonoBehaviour
 {
 	public Transform LeaderboardRoot;
 	public GameObject LeaderboardItem;
-	[SerializeField]GameObject LeaderboardPanel;
-	[SerializeField]UIAuth uIAuth;
+	[SerializeField]GameObject _leaderboardPanel;
+	[SerializeField]UIAuth _uIAuth;
 	
 	private void Start()
 	{
@@ -17,7 +17,7 @@ public class UILeaderboard : MonoBehaviour
 
 	public void SendRandomScores()
 	{
-		string username=uIAuth.NameText.ToString();
+		string username=_uIAuth.NameText.ToString();
 		LeaderboardManager.Instance.SubmitScore(username,15); 
 	}
 
@@ -44,13 +44,13 @@ public class UILeaderboard : MonoBehaviour
 	}
 	public void OpenLeaderboard()
 	{
-		LeaderboardPanel.SetActive(true);
+		_leaderboardPanel.SetActive(true);
 		FillLeaderboard();
 	}
 	
 	public void CloseLeaderboard()
 	{
-		LeaderboardPanel.SetActive(false);
+		_leaderboardPanel.SetActive(false);
 	}
 	
 }

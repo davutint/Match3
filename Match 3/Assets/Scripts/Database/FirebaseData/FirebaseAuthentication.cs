@@ -8,9 +8,18 @@ using UnityEngine.UI;
 
 public class FirebaseAuthentication : MonoBehaviour
 {
-	[SerializeField] UIAuth uiAuth;
-	string userName;
-	GoogleSignInConfiguration configuration;
+	[SerializeField] UIAuth _uiAuth;
+	string _userName;
+	GoogleSignInConfiguration _configuration;
+	private string _api= "291580415155-2knvgd714vviff2p92nero31393hqq6l.apps.googleusercontent.com"; //değiştir
+	private void Awake()
+	{
+		_configuration = new GoogleSignInConfiguration
+  		{
+      		WebClientId = _api,
+      		RequestIdToken = true
+  		};
+	}
 	private void Start()
 	{
 		CheckUser();
@@ -29,14 +38,14 @@ public class FirebaseAuthentication : MonoBehaviour
 				DataSnapshot snapshot = task.Result;
 				if (snapshot.HasChildren)
 				{
-					uiAuth.NameText.text = snapshot.Child(FirebaseManager.Instance.User.UserId).Child("username").Value.ToString();
-					uiAuth.OpenPanel(uiAuth.GamePanel);
+					_uiAuth.NameText.text = snapshot.Child(FirebaseManager.Instance.User.UserId).Child("username").Value.ToString();
+					_uiAuth.OpenPanel(_uiAuth.GamePanel);
 				}              
 			});
 		}
 		else
 		{
-			uiAuth.OpenPanel(uiAuth.LoginPanel);
+			_uiAuth.OpenPanel(_uiAuth.LoginPanel);
 		}
 	}
 	public void SingInAnonymous()
@@ -61,8 +70,8 @@ public class FirebaseAuthentication : MonoBehaviour
 					}
 					else
 					{
-						uiAuth.NameInput.text = "";
-						uiAuth.OpenPanel(uiAuth.NamePanel);
+						_uiAuth.NameInput.text = "";
+						_uiAuth.OpenPanel(_uiAuth.NamePanel);
 					}
 				});
 			}
@@ -70,7 +79,7 @@ public class FirebaseAuthentication : MonoBehaviour
 	}
 	public void GoogleSingUp()
 	{
-		GoogleSignIn.Configuration = configuration;
+		GoogleSignIn.Configuration = _configuration;
 		GoogleSignIn.Configuration.UseGameSignIn = false;
 		GoogleSignIn.Configuration.RequestIdToken = true;
 		GoogleSignIn.Configuration.RequestEmail = true;
@@ -105,20 +114,20 @@ public class FirebaseAuthentication : MonoBehaviour
 				DataSnapshot snapshot = ctask.Result;
 				if (snapshot.HasChildren)
 				{
-					uiAuth.NameText.text = snapshot.Child(FirebaseManager.Instance.User.UserId).Child("username").Value.ToString();
-					uiAuth.OpenPanel(uiAuth.GamePanel);
+					_uiAuth.NameText.text = snapshot.Child(FirebaseManager.Instance.User.UserId).Child("username").Value.ToString();
+					_uiAuth.OpenPanel(_uiAuth.GamePanel);
 				}
 				else
 				{
-					uiAuth.NameInput.text = "";
-					uiAuth.OpenPanel(uiAuth.NamePanel);
+					_uiAuth.NameInput.text = "";
+					_uiAuth.OpenPanel(_uiAuth.NamePanel);
 				}
 			});
 		});
 	}
 	public void LoginEmail()
 	{
-		FirebaseAuth.DefaultInstance.SignInWithEmailAndPasswordAsync(uiAuth.EmailLoginInput.text, uiAuth.PasswordLoginInput.text).ContinueWithOnMainThread(task =>
+		FirebaseAuth.DefaultInstance.SignInWithEmailAndPasswordAsync(_uiAuth.EmailLoginInput.text, _uiAuth.PasswordLoginInput.text).ContinueWithOnMainThread(task =>
 		{
 			if (task.IsCanceled || task.IsFaulted)
 			{
@@ -141,15 +150,15 @@ public class FirebaseAuthentication : MonoBehaviour
 					DataSnapshot snapshot = ctask.Result;
 					if (snapshot.HasChildren)
 					{
-						uiAuth.NameText.text = snapshot.Child(FirebaseManager.Instance.User.UserId).Child("username").Value.ToString();
-						uiAuth.OpenPanel(uiAuth.GamePanel);
+						_uiAuth.NameText.text = snapshot.Child(FirebaseManager.Instance.User.UserId).Child("username").Value.ToString();
+						_uiAuth.OpenPanel(_uiAuth.GamePanel);
 					}
 					else
 					{
-						uiAuth.EmailLoginInput.text = "";
-						uiAuth.PasswordLoginInput.text = "";
-						uiAuth.NameInput.text = "";
-						uiAuth.OpenPanel(uiAuth.NamePanel);
+						_uiAuth.EmailLoginInput.text = "";
+						_uiAuth.PasswordLoginInput.text = "";
+						_uiAuth.NameInput.text = "";
+						_uiAuth.OpenPanel(_uiAuth.NamePanel);
 					}
 				});
 			}
@@ -157,7 +166,7 @@ public class FirebaseAuthentication : MonoBehaviour
 	}
 	public void SignUpEmail()
 	{
-		FirebaseAuth.DefaultInstance.CreateUserWithEmailAndPasswordAsync(uiAuth.EmailSingUpInput.text, uiAuth.PasswordSingUpInput.text).ContinueWithOnMainThread(task =>
+		FirebaseAuth.DefaultInstance.CreateUserWithEmailAndPasswordAsync(_uiAuth.EmailSingUpInput.text, _uiAuth.PasswordSingUpInput.text).ContinueWithOnMainThread(task =>
 		{
 			if (task.IsCanceled || task.IsFaulted)
 			{
@@ -169,9 +178,9 @@ public class FirebaseAuthentication : MonoBehaviour
 				AuthResult result = task.Result;
 				FirebaseManager.Instance.User = result.User;
 				Debug.Log("Kayit Basarili");
-				uiAuth.EmailSingUpInput.text = "";
-				uiAuth.PasswordSingUpInput.text = "";
-				uiAuth.OpenPanel(uiAuth.LoginPanel);
+				_uiAuth.EmailSingUpInput.text = "";
+				_uiAuth.PasswordSingUpInput.text = "";
+				_uiAuth.OpenPanel(_uiAuth.LoginPanel);
 			}
 		});
 	}
@@ -187,16 +196,16 @@ public class FirebaseAuthentication : MonoBehaviour
 			DataSnapshot snapshot = task.Result;
 			if (snapshot.HasChildren)
 			{
-				userName = "";
-				uiAuth.NameWarningText.text = "Bu Kullanici Adi Var";
-				uiAuth.NameWarningText.color = Color.red;
+				_userName = "";
+				_uiAuth.NameWarningText.text = "Bu Kullanici Adi Var";
+				_uiAuth.NameWarningText.color = Color.red;
 				confirmBTN.interactable = false;
 			}
 			else
 			{
-				userName = text;
-				uiAuth.NameWarningText.text = "Bu Kullanici Musait";
-				uiAuth.NameWarningText.color = Color.green;
+				_userName = text;
+				_uiAuth.NameWarningText.text = "Bu Kullanici Musait";
+				_uiAuth.NameWarningText.color = Color.green;
 				confirmBTN.interactable = true;
 			}
 		});
@@ -204,7 +213,7 @@ public class FirebaseAuthentication : MonoBehaviour
 	public void SetUserName()
 	{
 		DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference.Child("Userss").Child(FirebaseManager.Instance.User.UserId);
-		reference.Child("username").SetValueAsync(userName);
+		reference.Child("username").SetValueAsync(_userName);
 		reference.Child("level").SetValueAsync(1);
 		reference.Child("currentxp").SetValueAsync(0);
 		//reference.Child("neededExp").SetValueAsync(0);
@@ -215,9 +224,9 @@ public class FirebaseAuthentication : MonoBehaviour
 		reference.Child("lvl_4").SetValueAsync(0);
 		reference.Child("point").SetValueAsync(0);
 
-		uiAuth.NameText.text = userName;
-		FirebaseManager.Instance.GetPlayerLevelData(uiAuth.GetLevelDataStart);
-		uiAuth.OpenPanel(uiAuth.GamePanel);
+		_uiAuth.NameText.text = _userName;
+		FirebaseManager.Instance.GetPlayerLevelData(_uiAuth.GetLevelDataStart);
+		_uiAuth.OpenPanel(_uiAuth.GamePanel);
 		
 	}
 	public void SingOut()
@@ -226,7 +235,7 @@ public class FirebaseAuthentication : MonoBehaviour
 		{
 			FirebaseManager.Instance.Auth.SignOut();
 			FirebaseManager.Instance.User = null;
-			uiAuth.OpenPanel(uiAuth.LoginPanel);
+			_uiAuth.OpenPanel(_uiAuth.LoginPanel);
 		}
 	}
 }

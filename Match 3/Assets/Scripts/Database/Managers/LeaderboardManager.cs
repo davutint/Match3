@@ -18,7 +18,7 @@ public class LeaderboardManager : MonoBehaviour
 		}
 	}
 
-	LeaderboardProvider provider = null;
+	LeaderboardProvider _provider = null;
 	public enum LeaderboardProviderTypes {Firebase };
 	public LeaderboardProviderTypes LeaderboardProviderType= LeaderboardProviderTypes.Firebase;
 	private void Start()
@@ -26,19 +26,19 @@ public class LeaderboardManager : MonoBehaviour
 		switch (LeaderboardProviderType)
 		{
 			case LeaderboardProviderTypes.Firebase:
-				provider=GetComponent<LeaderboardFirebaseProvider>();
+				_provider=GetComponent<LeaderboardFirebaseProvider>();
 				break;
 		}
-		Debug.Log("Leaderboard provider : " + provider.GetVendor());
+		Debug.Log("Leaderboard provider : " + _provider.GetVendor());
 	}
 
 	public void GetLeaderboardData(Action<List<LeaderboardProvider.LeaderboardItem>> onComplete)
 	{
-		provider?.GetData(onComplete);       
+		_provider?.GetData(onComplete);       
 	}
 	public void SubmitScore(string userName=null ,int score=0)
 	{
-		provider?.SetScore(userName,score);
+		_provider?.SetScore(userName,score);
 		
 	}
 }

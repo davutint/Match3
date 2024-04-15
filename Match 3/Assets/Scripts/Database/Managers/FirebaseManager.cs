@@ -22,7 +22,7 @@ public class FirebaseManager : MonoBehaviour
 		}
 	}
 
-	public string Api= "11868008013-3hvreepdlp8u3uhnkv7t6v27a0o4dpcj.apps.googleusercontent.com"; //değiştir
+	
 	public FirebaseAuth Auth;
 	public FirebaseUser User;
 
@@ -124,13 +124,20 @@ public class FirebaseManager : MonoBehaviour
 			}
 		});
 	}
-	
-	
-
-	public void GetData(string playername,int level,int lvl_1,int lvl_2,int lvl_3,int lvl_4)
+	public void StartLevel(int levelNumber) //round manager level start
 	{
-		Debug.Log(level + " " + lvl_1 + " " + lvl_2 + " " + lvl_3 + " " + lvl_4);
+		Firebase.Analytics.FirebaseAnalytics.LogEvent("level_started", "level_number", (levelNumber-2).ToString());
 	}
 
-  
+// Level tamamlandığında
+	public void CompleteLevel(int levelNumber) //goal scorea erişince
+	{
+		Firebase.Analytics.FirebaseAnalytics.LogEvent("level_completed", "level_number", (levelNumber-2).ToString());//Level1 3. sahneden başladığı için -2 dedik
+	}
+// Oyuncu bir bölümü başaramadığında
+	public void FailedLevel(int levelNumber) //goal score erişemeyince
+	{
+		Firebase.Analytics.FirebaseAnalytics.LogEvent("level_failed", "level_number", (levelNumber-2).ToString());
+	}
+	
 }

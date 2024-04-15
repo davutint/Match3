@@ -191,6 +191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 682518538}
   - component: {fileID: 682518539}
+  - component: {fileID: 682518540}
   m_Layer: 0
   m_Name: FireBaseManager
   m_TagString: Untagged
@@ -226,6 +227,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Api: 291580415155-2knvgd714vviff2p92nero31393hqq6l.apps.googleusercontent.com
+--- !u!114 &682518540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682518537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804cbf2c8bc5c45ebb2bbc733739fd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1733339612
 GameObject:
   m_ObjectHideFlags: 0

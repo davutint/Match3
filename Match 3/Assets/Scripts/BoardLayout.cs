@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class BoardLayout : MonoBehaviour
 {
-    public LayoutRow[] allRows;
+    public LayoutRow[] AllRows;
 
     public Gem[,] GetLayout()//eğer levele özel bir başlangıç dizilimi yapmak istiyorsak kullanılabilir.
     {
-        Gem[,] theLayout = new Gem[allRows[0].gemsInRow.Length, allRows.Length];
+        Gem[,] theLayout = new Gem[AllRows[0].gemsInRow.Length, AllRows.Length];
 
-        for(int y = 0; y < allRows.Length; y++)
+        for(int y = 0; y < AllRows.Length; y++)
         {
-            for(int x = 0; x < allRows[y].gemsInRow.Length; x++)
+            for(int x = 0; x < AllRows[y].gemsInRow.Length; x++)
             {
                 if(x < theLayout.GetLength(0))
                 {
-                    if(allRows[y].gemsInRow[x] != null)
+                    if(AllRows[y].gemsInRow[x] != null)
                     {
-                        theLayout[x, allRows.Length - 1 - y] = allRows[y].gemsInRow[x];
+                        theLayout[x, AllRows.Length - 1 - y] = AllRows[y].gemsInRow[x];
                     }
                 }
             }

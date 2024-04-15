@@ -6,7 +6,7 @@ public enum GemType { earth, jupiter, mars, neptune, uranus, venus,bomb, stone,p
 public class Gem : MonoBehaviour
 {
    //[HideInInspector]
-	public Vector2Int posIndex;
+	public Vector2Int PosIndex;
 	//[HideInInspector]
 	public Board board;
 
@@ -20,36 +20,36 @@ public class Gem : MonoBehaviour
 	private Gem _otherGem;
 
 	
-	public GemType type;
+	public GemType Type;
 
-	public bool isMatched;
+	public bool IsMatched;
 	
 	private Vector2Int _previousPos;
 
-	public GameObject destroyEffect;
+	public GameObject DestroyEffect;
 
-	public int blastSize = 2;
+	public int BlastSize = 2;
 
-	public int scoreValue = 10;
+	public int ScoreValue = 10;
 
    
 	void Update()
 	{
-		if (Vector2.Distance(transform.position, posIndex) > .01f)
+		if (Vector2.Distance(transform.position, PosIndex) > .01f)
 		{
-			transform.position = Vector2.Lerp(transform.position, posIndex, board.gemSpeed * Time.deltaTime);
+			transform.position = Vector2.Lerp(transform.position, PosIndex, board.GemSpeed * Time.deltaTime);
 		} 
 		else
 		{
-			transform.position = new Vector3(posIndex.x, posIndex.y, 0f);
-			board.allGems[posIndex.x, posIndex.y] = this;
+			transform.position = new Vector3(PosIndex.x, PosIndex.y, 0f);
+			board.AllGems[PosIndex.x, PosIndex.y] = this;
 		}
 
 		if(_mousePressed && Input.GetMouseButtonUp(0))
 		{
 			_mousePressed = false;
 
-			if(board.currentState == BoardState.move && board.roundMan.RoundTime > 0)
+			if(board.CurrentState == BoardState.move && board.RoundMan.RoundTime > 0)
 			{
 				_finalTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				CalculateAngle();
@@ -59,14 +59,14 @@ public class Gem : MonoBehaviour
 
 	public void SetupGem(Vector2Int pos, Board theBoard)
 	{
-		posIndex = pos;
+		PosIndex = pos;
 		board = theBoard;
 	}
 
 	
 	private void OnMouseDown()
 	{
-		if(board.currentState == BoardState.move && board.roundMan.RoundTime > 0)//Board.BoardState.move olarak değiştirirsin eğer çalışmazsa
+		if(board.CurrentState == BoardState.move && board.RoundMan.RoundTime > 0)//Board.BoardState.move olarak değiştirirsin eğer çalışmazsa
 	  	{
 			_firstTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			_mousePressed = true;
@@ -87,60 +87,60 @@ public class Gem : MonoBehaviour
 
 	private void MovePieces()
 	{
-		_previousPos = posIndex;
+		_previousPos = PosIndex;
 
-		if(_swipeAngle < 45 && _swipeAngle > -45 && posIndex.x < board.width - 1)
+		if(_swipeAngle < 45 && _swipeAngle > -45 && PosIndex.x < board.Width - 1)
 		{
-			_otherGem = board.allGems[posIndex.x + 1, posIndex.y];
-			_otherGem.posIndex.x--;
-			posIndex.x++;
+			_otherGem = board.AllGems[PosIndex.x + 1, PosIndex.y];
+			_otherGem.PosIndex.x--;
+			PosIndex.x++;
 		}
-		else if(_swipeAngle > 45 && _swipeAngle <= 135 && posIndex.y < board.height - 1)
+		else if(_swipeAngle > 45 && _swipeAngle <= 135 && PosIndex.y < board.Height - 1)
 		{
-			_otherGem = board.allGems[posIndex.x, posIndex.y + 1];
-			_otherGem.posIndex.y--;
-			posIndex.y++;
+			_otherGem = board.AllGems[PosIndex.x, PosIndex.y + 1];
+			_otherGem.PosIndex.y--;
+			PosIndex.y++;
 		}
-		else if(_swipeAngle < -45 && _swipeAngle >= -135 && posIndex.y > 0)
+		else if(_swipeAngle < -45 && _swipeAngle >= -135 && PosIndex.y > 0)
 		{
-			_otherGem = board.allGems[posIndex.x, posIndex.y - 1];
-			_otherGem.posIndex.y++;
-			posIndex.y--;
+			_otherGem = board.AllGems[PosIndex.x, PosIndex.y - 1];
+			_otherGem.PosIndex.y++;
+			PosIndex.y--;
 		}
-		else if(_swipeAngle > 135 || _swipeAngle < -135 && posIndex.x > 0)
+		else if(_swipeAngle > 135 || _swipeAngle < -135 && PosIndex.x > 0)
 		{
-			_otherGem = board.allGems[posIndex.x - 1, posIndex.y];
-			_otherGem.posIndex.x++;
-			posIndex.x--;
+			_otherGem = board.AllGems[PosIndex.x - 1, PosIndex.y];
+			_otherGem.PosIndex.x++;
+			PosIndex.x--;
 		}
 
-		board.allGems[posIndex.x, posIndex.y] = this;
-		board.allGems[_otherGem.posIndex.x, _otherGem.posIndex.y] = _otherGem;
+		board.AllGems[PosIndex.x, PosIndex.y] = this;
+		board.AllGems[_otherGem.PosIndex.x, _otherGem.PosIndex.y] = _otherGem;
 
 		StartCoroutine(CheckMoveCo());
 	}
 
 	public IEnumerator CheckMoveCo()
 	{
-		board.currentState = BoardState.wait;
+		board.CurrentState = BoardState.wait;
 
 		yield return new WaitForSeconds(.5f);
 
-		board.matchFind.FindAllMatches();
+		board.MatchFind.FindAllMatches();
 
 		if(_otherGem != null)
 		{
-			if(!isMatched && !_otherGem.isMatched)
+			if(!IsMatched && !_otherGem.IsMatched)
 			{
-				_otherGem.posIndex = posIndex;
-				posIndex = _previousPos;
+				_otherGem.PosIndex = PosIndex;
+				PosIndex = _previousPos;
 
-				board.allGems[posIndex.x, posIndex.y] = this;
-				board.allGems[_otherGem.posIndex.x, _otherGem.posIndex.y] = _otherGem;
+				board.AllGems[PosIndex.x, PosIndex.y] = this;
+				board.AllGems[_otherGem.PosIndex.x, _otherGem.PosIndex.y] = _otherGem;
 
 				yield return new WaitForSeconds(.5f);
 
-				board.currentState = BoardState.move;
+				board.CurrentState = BoardState.move;
 			} 
 			else
 			{

@@ -15,9 +15,6 @@ public class LevelSelectButton : MonoBehaviour
 	[SerializeField]private GameObject[] _unlockTexts;
 	[SerializeField]private Button[] _levelButtons;
 	
-	
-
-	
 	void Start()
 	{
 		CheckTheLevelUnlocks();

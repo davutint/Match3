@@ -32,16 +32,16 @@ public class UIAuth : MonoBehaviour
 	public TMP_InputField EmailSingUpInput;
 	public TMP_InputField PasswordSingUpInput;
 
-
+	
 	public Slider Slider;
 	public TextMeshProUGUI SliderBarText;
 	
-	private int requiredExperience;
-	[SerializeField] private FirebaseAuthentication firebaseAuthentication;
+	private int _requiredExperience;
+	[SerializeField] private FirebaseAuthentication _firebaseAuthentication;
 	private void Start()
 	{
 		NameInput.onValueChanged.AddListener(ChanegeUserNameListener);
-		if (NameText.text!=null)
+		if (FirebaseManager.Instance.User!=null)
 		{
 			FirebaseManager.Instance.GetPlayerLevelData(GetLevelDataStart);
 		}
@@ -51,7 +51,7 @@ public class UIAuth : MonoBehaviour
 	{
 		if (text.Trim().Length > 2 && text.Trim().Length < 20)
 		{
-			firebaseAuthentication.CheckUserName(text.Trim(), SetNameButton);
+			_firebaseAuthentication.CheckUserName(text.Trim(), SetNameButton);
 		}
 		else
 		{
@@ -62,7 +62,7 @@ public class UIAuth : MonoBehaviour
 	}
 	public void SignOut()
 	{
-		firebaseAuthentication.SingOut();
+		_firebaseAuthentication.SingOut();
 	}
 
 	public void OpenPanel(GameObject panel)
@@ -90,9 +90,9 @@ public class UIAuth : MonoBehaviour
 	
 	public int RequiredExperience(int level)//Level up kısmını bunu kullanarak kontrol et
 	{
-		requiredExperience=levelConfigSO.GetRequiredExp(level);
-		Debug.Log("Gereken xp  "+requiredExperience);
-		return requiredExperience;
+		_requiredExperience=levelConfigSO.GetRequiredExp(level);
+		Debug.Log("Gereken xp  "+_requiredExperience);
+		return _requiredExperience;
 		
 	}
 }

@@ -7,39 +7,39 @@ using UnityEngine.SceneManagement;
 public enum BoardState {  wait, move}
 public  class Board : MonoBehaviour
 {
-	public int width;
-	public int height;
+	public int Width;
+	public int Height;
 
-	public GameObject bgTilePrefab;
+	public GameObject BgTilePrefab;
 
-	public Gem[] gems;
+	public Gem[] Gems;
 
-	public Gem[,] allGems;
+	public Gem[,] AllGems;
 
-	public float gemSpeed;
+	public float GemSpeed;
 
 	[HideInInspector]
-	public MatchFinder matchFind;
+	public MatchFinder MatchFind;
 
    
-	public BoardState currentState = BoardState.move;
+	public BoardState CurrentState = BoardState.move;
 
-	public Gem bomb;
-	public float bombChance = 2f;
+	public Gem Bomb;
+	public float BombChance = 2f;
 
 	[HideInInspector]
-	public RoundManager roundMan;
+	public RoundManager RoundMan;
 
 	private float _bonusMulti;//ard arda patlattığımızda puanımız bu çarpana göre çarpılıp artıyor
-	public float bonusAmount = .5f;
+	public float BonusAmount = .5f;
 
 	private BoardLayout _boardLayout;
 	private Gem[,] _layoutStore;
 
 	private void Awake()
 	{
-		matchFind = FindObjectOfType<MatchFinder>();
-		roundMan = FindObjectOfType<RoundManager>();
+		MatchFind = FindObjectOfType<MatchFinder>();
+		RoundMan = FindObjectOfType<RoundManager>();
 		_boardLayout = GetComponent<BoardLayout>();
 	}
 
@@ -47,9 +47,9 @@ public  class Board : MonoBehaviour
 	void Start()
 	{
 		
-		allGems = new Gem[width, height];
+		AllGems = new Gem[Width, Height];
 
-		_layoutStore = new Gem[width, height];
+		_layoutStore = new Gem[Width, Height];
 
 		Setup();
 	}
@@ -63,12 +63,12 @@ public  class Board : MonoBehaviour
 		}
 
 
-		for(int x = 0; x < width; x++)
+		for(int x = 0; x < Width; x++)
 		{
-			for(int y = 0; y < height; y++)
+			for(int y = 0; y < Height; y++)
 			{
 				Vector2 pos = new Vector2(x, y);
-				GameObject bgTile = Instantiate(bgTilePrefab, pos, Quaternion.identity);
+				GameObject bgTile = Instantiate(BgTilePrefab, pos, Quaternion.identity);
 				bgTile.transform.parent = transform;
 				bgTile.name = "BG Tile - " + x + ", " + y;
 
@@ -79,16 +79,16 @@ public  class Board : MonoBehaviour
 				else
 				{
 
-					int gemToUse = Random.Range(0, gems.Length);
+					int gemToUse = Random.Range(0, Gems.Length);
 
 					int iterations = 0;
-					while (MatchesAt(new Vector2Int(x, y), gems[gemToUse]) && iterations < 100)
+					while (MatchesAt(new Vector2Int(x, y), Gems[gemToUse]) && iterations < 100)
 					{
-						gemToUse = Random.Range(0, gems.Length);
+						gemToUse = Random.Range(0, Gems.Length);
 						iterations++;
 					}
 
-					SpawnGem(new Vector2Int(x, y), gems[gemToUse]);
+					SpawnGem(new Vector2Int(x, y), Gems[gemToUse]);
 				}
 			}
 		}
@@ -98,15 +98,15 @@ public  class Board : MonoBehaviour
 
 	private void SpawnGem(Vector2Int pos, Gem gemToSpawn)
 	{
-		if(Random.Range(0f, 100f) < bombChance)
+		if(Random.Range(0f, 100f) < BombChance)
 		{
-			gemToSpawn = bomb;
+			gemToSpawn = Bomb;
 		}
 
-		Gem gem = Instantiate(gemToSpawn, new Vector3(pos.x, pos.y + height, 0f), Quaternion.identity);
+		Gem gem = Instantiate(gemToSpawn, new Vector3(pos.x, pos.y + Height, 0f), Quaternion.identity);
 		gem.transform.parent = transform;
 		gem.name = "Gem - " + pos.x + ", " + pos.y;
-		allGems[pos.x, pos.y] = gem;
+		AllGems[pos.x, pos.y] = gem;
 
 		gem.SetupGem(pos, this);
 	}
@@ -115,7 +115,7 @@ public  class Board : MonoBehaviour
 	{
 		if(posToCheck.x > 1)
 		{
-			if(allGems[posToCheck.x - 1, posToCheck.y].type == gemToCheck.type && allGems[posToCheck.x - 2, posToCheck.y].type == gemToCheck.type)
+			if(AllGems[posToCheck.x - 1, posToCheck.y].Type == gemToCheck.Type && AllGems[posToCheck.x - 2, posToCheck.y].Type == gemToCheck.Type)
 			{
 				return true;
 			}
@@ -123,7 +123,7 @@ public  class Board : MonoBehaviour
 
 		if (posToCheck.y > 1)
 		{
-			if (allGems[posToCheck.x, posToCheck.y - 1].type == gemToCheck.type && allGems[posToCheck.x, posToCheck.y - 2].type == gemToCheck.type)
+			if (AllGems[posToCheck.x, posToCheck.y - 1].Type == gemToCheck.Type && AllGems[posToCheck.x, posToCheck.y - 2].Type == gemToCheck.Type)
 			{
 				return true;
 			}
@@ -134,38 +134,38 @@ public  class Board : MonoBehaviour
 
 	private void DestroyMatchedGemAt(Vector2Int pos)//eşleşen objeleri ses ve particle effect eşliğinde yok ediyoruz
 	{
-		if(allGems[pos.x, pos.y] != null)
+		if(AllGems[pos.x, pos.y] != null)
 		{
-			if(allGems[pos.x, pos.y].isMatched)
+			if(AllGems[pos.x, pos.y].IsMatched)
 			{
-				if(allGems[pos.x, pos.y].type == GemType.bomb)
+				if(AllGems[pos.x, pos.y].Type == GemType.bomb)
 				{
-					SFXManager.instance.PlayExplode();
-				} else if (allGems[pos.x, pos.y].type == GemType.stone)//şimdilik gerek yok belki sonra ekleriz
+					SFXManager.Instance.PlayExplode();
+				} else if (AllGems[pos.x, pos.y].Type == GemType.stone)//şimdilik gerek yok belki sonra ekleriz
 				{
-					SFXManager.instance.PlayStoneBreak();
+					SFXManager.Instance.PlayStoneBreak();
 				} else
 				{
-					SFXManager.instance.PlayGemBreak();
+					SFXManager.Instance.PlayGemBreak();
 				}
 
-				Instantiate(allGems[pos.x, pos.y].destroyEffect, new Vector2(pos.x, pos.y), Quaternion.identity);
+				Instantiate(AllGems[pos.x, pos.y].DestroyEffect, new Vector2(pos.x, pos.y), Quaternion.identity);
 				//roundMan.roundTime+=0.6f; oyun sonsuza kadar sürüyor, iptal..
-				Destroy(allGems[pos.x, pos.y].gameObject);
-				allGems[pos.x, pos.y] = null;
+				Destroy(AllGems[pos.x, pos.y].gameObject);
+				AllGems[pos.x, pos.y] = null;
 			}
 		}
 	}
 
 	public void DestroyMatches()
 	{
-		for(int i = 0; i < matchFind.currentMatches.Count; i++)
+		for(int i = 0; i < MatchFind.CurrentMatches.Count; i++)
 		{
-			if(matchFind.currentMatches[i] != null)
+			if(MatchFind.CurrentMatches[i] != null)
 			{
-				ScoreCheck(matchFind.currentMatches[i]);
+				ScoreCheck(MatchFind.CurrentMatches[i]);
 
-				DestroyMatchedGemAt(matchFind.currentMatches[i].posIndex);
+				DestroyMatchedGemAt(MatchFind.CurrentMatches[i].PosIndex);
 			}
 		}
 
@@ -178,18 +178,18 @@ public  class Board : MonoBehaviour
 
 		int nullCounter = 0;
 
-		for (int x = 0; x < width; x++)
+		for (int x = 0; x < Width; x++)
 		{
-			for (int y = 0; y < height; y++)
+			for (int y = 0; y < Height; y++)
 			{
-				if(allGems[x,y] == null)
+				if(AllGems[x,y] == null)
 				{
 					nullCounter++;
 				} else if(nullCounter > 0)
 				{
-					allGems[x, y].posIndex.y -= nullCounter;
-					allGems[x, y - nullCounter] = allGems[x, y];
-					allGems[x, y] = null;
+					AllGems[x, y].PosIndex.y -= nullCounter;
+					AllGems[x, y - nullCounter] = AllGems[x, y];
+					AllGems[x, y] = null;
 				}
 
 			}
@@ -207,9 +207,9 @@ public  class Board : MonoBehaviour
 
 		yield return new WaitForSeconds(.5f);
 
-		matchFind.FindAllMatches();
+		MatchFind.FindAllMatches();
 
-		if(matchFind.currentMatches.Count > 0)
+		if(MatchFind.CurrentMatches.Count > 0)
 		{
 			_bonusMulti++;
 
@@ -218,7 +218,7 @@ public  class Board : MonoBehaviour
 		} else
 		{
 			yield return new WaitForSeconds(.5f);
-			currentState = BoardState.move;
+			CurrentState = BoardState.move;
 
 			_bonusMulti = 0f;
 		}
@@ -226,15 +226,15 @@ public  class Board : MonoBehaviour
 
 	private void RefillBoard()
 	{
-		for (int x = 0; x < width; x++)
+		for (int x = 0; x < Width; x++)
 		{
-			for (int y = 0; y < height; y++)
+			for (int y = 0; y < Height; y++)
 			{
-				if (allGems[x, y] == null)
+				if (AllGems[x, y] == null)
 				{
-					int gemToUse = Random.Range(0, gems.Length);
+					int gemToUse = Random.Range(0, Gems.Length);
 
-					SpawnGem(new Vector2Int(x, y), gems[gemToUse]);
+					SpawnGem(new Vector2Int(x, y), Gems[gemToUse]);
 				}
 			}
 		}
@@ -248,13 +248,13 @@ public  class Board : MonoBehaviour
 
 		foundGems.AddRange(FindObjectsOfType<Gem>());
 
-		for (int x = 0; x < width; x++)
+		for (int x = 0; x < Width; x++)
 		{
-			for (int y = 0; y < height; y++)
+			for (int y = 0; y < Height; y++)
 			{
-				if(foundGems.Contains(allGems[x,y]))
+				if(foundGems.Contains(AllGems[x,y]))
 				{
-					foundGems.Remove(allGems[x, y]);
+					foundGems.Remove(AllGems[x, y]);
 				}
 			}
 		}
@@ -267,24 +267,24 @@ public  class Board : MonoBehaviour
 
 	public void ShuffleBoard()// Gemleri karıştırma yapıyoruz,butona bağlanacak
 	{
-		if (currentState != BoardState.wait)
+		if (CurrentState != BoardState.wait)
 		{
-			currentState = BoardState.wait;
+			CurrentState = BoardState.wait;
 
 			List<Gem> gemsFromBoard = new List<Gem>();
 
-			for (int x = 0; x < width; x++)
+			for (int x = 0; x < Width; x++)
 			{
-				for (int y = 0; y < height; y++)
+				for (int y = 0; y < Height; y++)
 				{
-					gemsFromBoard.Add(allGems[x, y]);
-					allGems[x, y] = null;
+					gemsFromBoard.Add(AllGems[x, y]);
+					AllGems[x, y] = null;
 				}
 			}
 
-			for (int x = 0; x < width; x++)
+			for (int x = 0; x < Width; x++)
 			{
-				for (int y = 0; y < height; y++)
+				for (int y = 0; y < Height; y++)
 				{
 					int gemToUse = Random.Range(0, gemsFromBoard.Count);
 
@@ -296,7 +296,7 @@ public  class Board : MonoBehaviour
 					}
 
 					gemsFromBoard[gemToUse].SetupGem(new Vector2Int(x, y), this);
-					allGems[x, y] = gemsFromBoard[gemToUse];
+					AllGems[x, y] = gemsFromBoard[gemToUse];
 					gemsFromBoard.RemoveAt(gemToUse);
 				}
 			}
@@ -307,12 +307,12 @@ public  class Board : MonoBehaviour
 
 	public void ScoreCheck(Gem gemToCheck)
 	{
-		roundMan.CurrentScore += gemToCheck.scoreValue;
+		RoundMan.CurrentScore += gemToCheck.ScoreValue;
 
 		if(_bonusMulti > 0)
 		{
-			float bonusToAdd = gemToCheck.scoreValue * _bonusMulti * bonusAmount;
-			roundMan.CurrentScore += Mathf.RoundToInt(bonusToAdd);
+			float bonusToAdd = gemToCheck.ScoreValue * _bonusMulti * BonusAmount;
+			RoundMan.CurrentScore += Mathf.RoundToInt(bonusToAdd);
 		}
 		
 	}
@@ -326,12 +326,12 @@ public  class Board : MonoBehaviour
 	
 	public float CameraX()//şu an için gerekli değil
 	{
-		float x=(float)width/2-0.5f;
+		float x=(float)Width/2-0.5f;
 		return x;
 	}
 	public float CameraY()
 	{
-		float y=(float)height/2-0.5f;
+		float y=(float)Height/2-0.5f;
 		return y;
 	}
 }

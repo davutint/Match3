@@ -10,7 +10,7 @@ public class LeaderboardFirebaseProvider : LeaderboardProvider
     {
         List<LeaderboardItem> result = new List<LeaderboardItem>();
         
-        FirebaseDatabase.DefaultInstance.GetReference("Userss").OrderByChild("point").LimitToLast(10).GetValueAsync().ContinueWithOnMainThread(task =>
+        FirebaseDatabase.DefaultInstance.GetReference("Userss").OrderByChild("point").LimitToLast(15).GetValueAsync().ContinueWithOnMainThread(task =>
         {
             if (task.IsFaulted || task.IsCanceled)
             {

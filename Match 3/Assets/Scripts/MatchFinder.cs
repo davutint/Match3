@@ -6,7 +6,7 @@ using System.Linq;
 public class MatchFinder : MonoBehaviour
 {
     private Board _board;
-    public List<Gem> currentMatches = new List<Gem>();
+    public List<Gem> CurrentMatches = new List<Gem>();
 
     private void Awake()
     {
@@ -15,50 +15,50 @@ public class MatchFinder : MonoBehaviour
 
     public void FindAllMatches()
     {
-        currentMatches.Clear();
+        CurrentMatches.Clear();
 
-        for (int x = 0; x < _board.width; x++)//seçili Gem in x ve y düzleminde etrafında aynı enum türünden obje olup olmadığını kontrol ediyoruz.
+        for (int x = 0; x < _board.Width; x++)//seçili Gem in x ve y düzleminde etrafında aynı enum türünden obje olup olmadığını kontrol ediyoruz.
         {
-            for (int y = 0; y < _board.height; y++)
+            for (int y = 0; y < _board.Height; y++)
             {
 
-                Gem currentGem = _board.allGems[x, y];
+                Gem currentGem = _board.AllGems[x, y];
                 if(currentGem != null)
                 {
-                    if(x > 0 && x < _board.width - 1)
+                    if(x > 0 && x < _board.Width - 1)
                     {
-                        Gem leftGem = _board.allGems[x - 1, y];
-                        Gem rightGem = _board.allGems[x + 1, y];
+                        Gem leftGem = _board.AllGems[x - 1, y];
+                        Gem rightGem = _board.AllGems[x + 1, y];
                         if(leftGem != null && rightGem != null)
                         {
-                            if(leftGem.type == currentGem.type && rightGem.type == currentGem.type && currentGem.type != GemType.stone)
+                            if(leftGem.Type == currentGem.Type && rightGem.Type == currentGem.Type && currentGem.Type != GemType.stone)
                             {
-                                currentGem.isMatched = true;
-                                leftGem.isMatched = true;
-                                rightGem.isMatched = true;
+                                currentGem.IsMatched = true;
+                                leftGem.IsMatched = true;
+                                rightGem.IsMatched = true;
 
-                                currentMatches.Add(currentGem);
-                                currentMatches.Add(leftGem);
-                                currentMatches.Add(rightGem);
+                                CurrentMatches.Add(currentGem);
+                                CurrentMatches.Add(leftGem);
+                                CurrentMatches.Add(rightGem);
                             }
                         }
                     }
 
-                    if (y > 0 && y < _board.height - 1)
+                    if (y > 0 && y < _board.Height - 1)
                     {
-                        Gem aboveGem = _board.allGems[x, y+1];
-                        Gem belowGem = _board.allGems[x, y-1];
+                        Gem aboveGem = _board.AllGems[x, y+1];
+                        Gem belowGem = _board.AllGems[x, y-1];
                         if (aboveGem != null && belowGem != null)
                         {
-                            if (aboveGem.type == currentGem.type && belowGem.type == currentGem.type && currentGem.type != GemType.stone)
+                            if (aboveGem.Type == currentGem.Type && belowGem.Type == currentGem.Type && currentGem.Type != GemType.stone)
                             {
-                                currentGem.isMatched = true;
-                                aboveGem.isMatched = true;
-                                belowGem.isMatched = true;
+                                currentGem.IsMatched = true;
+                                aboveGem.IsMatched = true;
+                                belowGem.IsMatched = true;
 
-                                currentMatches.Add(currentGem);
-                                currentMatches.Add(aboveGem);
-                                currentMatches.Add(belowGem);
+                                CurrentMatches.Add(currentGem);
+                                CurrentMatches.Add(aboveGem);
+                                CurrentMatches.Add(belowGem);
                             }
                         }
                     }
@@ -66,9 +66,9 @@ public class MatchFinder : MonoBehaviour
             }
         }
 
-        if(currentMatches.Count > 0)
+        if(CurrentMatches.Count > 0)
         {
-            currentMatches = currentMatches.Distinct().ToList();
+            CurrentMatches = CurrentMatches.Distinct().ToList();
         }
 
         CheckForBombs();
@@ -76,53 +76,53 @@ public class MatchFinder : MonoBehaviour
 
     public void CheckForBombs()
     {
-        for(int i = 0; i < currentMatches.Count; i++)
+        for(int i = 0; i < CurrentMatches.Count; i++)
         {
-            Gem gem = currentMatches[i];
+            Gem gem = CurrentMatches[i];
 
-            int x = gem.posIndex.x;
-            int y = gem.posIndex.y;
+            int x = gem.PosIndex.x;
+            int y = gem.PosIndex.y;
 
-            if(gem.posIndex.x > 0)
+            if(gem.PosIndex.x > 0)
             {
-                if(_board.allGems[x-1, y] != null)
+                if(_board.AllGems[x-1, y] != null)
                 {
-                    if(_board.allGems[x-1, y].type == GemType.bomb)
+                    if(_board.AllGems[x-1, y].Type == GemType.bomb)
                     {
-                        MarkBombArea(new Vector2Int(x-1, y), _board.allGems[x-1,y]);
+                        MarkBombArea(new Vector2Int(x-1, y), _board.AllGems[x-1,y]);
                     }
                 }
             }
 
-            if (gem.posIndex.x < _board.width - 1)
+            if (gem.PosIndex.x < _board.Width - 1)
             {
-                if (_board.allGems[x + 1, y] != null)
+                if (_board.AllGems[x + 1, y] != null)
                 {
-                    if (_board.allGems[x + 1, y].type == GemType.bomb)
+                    if (_board.AllGems[x + 1, y].Type == GemType.bomb)
                     {
-                        MarkBombArea(new Vector2Int(x + 1, y), _board.allGems[x + 1, y]);
+                        MarkBombArea(new Vector2Int(x + 1, y), _board.AllGems[x + 1, y]);
                     }
                 }
             }
 
-            if (gem.posIndex.y > 0)
+            if (gem.PosIndex.y > 0)
             {
-                if (_board.allGems[x, y - 1] != null)
+                if (_board.AllGems[x, y - 1] != null)
                 {
-                    if (_board.allGems[x, y - 1].type == GemType.bomb)
+                    if (_board.AllGems[x, y - 1].Type == GemType.bomb)
                     {
-                        MarkBombArea(new Vector2Int(x, y - 1), _board.allGems[x, y - 1]);
+                        MarkBombArea(new Vector2Int(x, y - 1), _board.AllGems[x, y - 1]);
                     }
                 }
             }
 
-            if (gem.posIndex.y < _board.height - 1)
+            if (gem.PosIndex.y < _board.Height - 1)
             {
-                if (_board.allGems[x, y + 1] != null)
+                if (_board.AllGems[x, y + 1] != null)
                 {
-                    if (_board.allGems[x, y + 1].type == GemType.bomb)
+                    if (_board.AllGems[x, y + 1].Type == GemType.bomb)
                     {
-                        MarkBombArea(new Vector2Int(x, y + 1), _board.allGems[x, y + 1]);
+                        MarkBombArea(new Vector2Int(x, y + 1), _board.AllGems[x, y + 1]);
                     }
                 }
             }
@@ -131,21 +131,21 @@ public class MatchFinder : MonoBehaviour
 
     public void MarkBombArea(Vector2Int bombPos, Gem theBomb)
     {
-        for(int x = bombPos.x - theBomb.blastSize; x <= bombPos.x + theBomb.blastSize; x++)
+        for(int x = bombPos.x - theBomb.BlastSize; x <= bombPos.x + theBomb.BlastSize; x++)
         {
-            for(int y = bombPos.y - theBomb.blastSize; y <= bombPos.y + theBomb.blastSize; y++)
+            for(int y = bombPos.y - theBomb.BlastSize; y <= bombPos.y + theBomb.BlastSize; y++)
             {
-                if(x >= 0 && x < _board.width && y >= 0 && y < _board.height)
+                if(x >= 0 && x < _board.Width && y >= 0 && y < _board.Height)
                 {
-                    if(_board.allGems[x,y] != null)
+                    if(_board.AllGems[x,y] != null)
                     {
-                        _board.allGems[x, y].isMatched = true;
-                        currentMatches.Add(_board.allGems[x, y]);
+                        _board.AllGems[x, y].IsMatched = true;
+                        CurrentMatches.Add(_board.AllGems[x, y]);
                     }
                 }
             }
         }
 
-        currentMatches = currentMatches.Distinct().ToList();
+        CurrentMatches = CurrentMatches.Distinct().ToList();
     }
 }

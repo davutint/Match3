@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SFXManager : MonoBehaviour
 {
-    public static SFXManager instance;
+    public static SFXManager Instance;
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     public AudioSource gemSound, explodeSound, stoneSound, roundOverSound;

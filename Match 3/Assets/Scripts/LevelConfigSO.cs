@@ -7,13 +7,13 @@ using UnityEngine;
 public class LevelConfigSO : ScriptableObject
 {
 	[Header("Animation Curve")]
-	public AnimationCurve animationCurve;
-	public int maxLevel;
-	public int maxRequiredExp;
+	public AnimationCurve AnimationCurve;
+	public int MaxLevel;
+	public int MaxRequiredExp;
 	
 	public int GetRequiredExp(int level)
 	{
-		int requiredExperience=Mathf.RoundToInt(animationCurve.Evaluate(Mathf.InverseLerp(0,maxLevel,level))*maxRequiredExp);
+		int requiredExperience=Mathf.RoundToInt(AnimationCurve.Evaluate(Mathf.InverseLerp(0,MaxLevel,level))*MaxRequiredExp);
 		return requiredExperience;
 	}
 }

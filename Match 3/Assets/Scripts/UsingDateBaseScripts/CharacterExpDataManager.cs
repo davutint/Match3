@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 public class CharacterExpDataManager : MonoBehaviour
 {
-	public LevelConfigSO levelConfigSO;
+	public LevelConfigSO LevelConfigSO;
 	private int _level;
-	private int experience;
-	private int requiredExperience;
+	private int _experience;
+	private int _requiredExperience;
 	
 	[SerializeField]RoundManager _roundManager;
 	[SerializeField]UIManager _uiManager;
@@ -25,9 +25,9 @@ public class CharacterExpDataManager : MonoBehaviour
 	private void GetLevelDataStart(int currentLevel,int currentExp)//burada gereken puan tamamlanınca çağırılacak kod var. OYUNCU BAŞARILI OLURSA ÇALIŞACAK.
 	{
 		_level=currentLevel;
-		experience=currentExp;
+		_experience=currentExp;
 		RequiredExperience(_level);
-		Debug.Log("şimdiki level firebaseden çektik  "+_level+" şimdiki exp firebaseden geldi  : "+experience );
+		Debug.Log("şimdiki level firebaseden çektik  "+_level+" şimdiki exp firebaseden geldi  : "+_experience );
 	}
 	
 	private void GetLevelData(int currentLevel,int currentExp)//burada gereken puan tamamlanınca çağırılacak kod var. OYUNCU BAŞARILI OLURSA ÇALIŞACAK.
@@ -62,9 +62,9 @@ public class CharacterExpDataManager : MonoBehaviour
 	
 	public int RequiredExperience(int level)//Level up kısmını bunu kullanarak kontrol et
 	{
-		requiredExperience=levelConfigSO.GetRequiredExp(level);
-		Debug.Log("Gereken xp  "+requiredExperience);
-		return requiredExperience;
+		_requiredExperience=LevelConfigSO.GetRequiredExp(level);
+		Debug.Log("Gereken xp  "+_requiredExperience);
+		return _requiredExperience;
 		
 	}
 }
