@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.012370954, g: 0.010259046, b: 0.009573689, a: 1}
+  m_IndirectSpecularColor: {r: 0.018015256, g: 0.01684156, b: 0.015979461, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -326,13 +326,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa1009577b9641fbb70f3169df80a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundTime: 60
-  currentScore: 0
-  displayScore: 0
-  scoreSpeed: 5
-  scoreTarget1: 0
-  scoreTarget2: 0
-  scoreTarget3: 0
+  RoundTime: 60
+  CurrentScore: 0
+  DisplayScore: 0
+  ScoreSpeed: 0
+  ScoreTarget: 5000
+  _uiMan: {fileID: 430390201}
+  characterExpDataManager: {fileID: 1704141623}
 --- !u!4 &936235955
 Transform:
   m_ObjectHideFlags: 0
@@ -590,11 +590,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8573641110431909264, guid: c6caac0eb04cb4357bc624cc4a1c5d64, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 430390201}
+    - target: {fileID: 8573641110431909264, guid: c6caac0eb04cb4357bc624cc4a1c5d64, type: 3}
+      propertyPath: _roundManager
+      value: 
+      objectReference: {fileID: 936235954}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6caac0eb04cb4357bc624cc4a1c5d64, type: 3}
+--- !u!114 &1704141623 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8573641110431909264, guid: c6caac0eb04cb4357bc624cc4a1c5d64, type: 3}
+  m_PrefabInstance: {fileID: 1704141622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc3001e0788e4a0fb1f5a6718eb5d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2032834131
 GameObject:
   m_ObjectHideFlags: 0

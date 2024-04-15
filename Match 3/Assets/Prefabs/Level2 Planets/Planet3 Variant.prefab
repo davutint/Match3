@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 4577130811158443544, guid: 52a13ebc1d0c44f8387455cb53297c00, type: 3}
       propertyPath: destroyEffect
       value: 
-      objectReference: {fileID: 1180326813398184551, guid: 0aa62f932e2a06045944f5bd75c93028, type: 3}
+      objectReference: {fileID: 8347670234200498197, guid: 1432aff22883e4a4e9f0a32bec8121f1, type: 3}
     - target: {fileID: 6510998598573681800, guid: 52a13ebc1d0c44f8387455cb53297c00, type: 3}
       propertyPath: m_Sprite
       value: 

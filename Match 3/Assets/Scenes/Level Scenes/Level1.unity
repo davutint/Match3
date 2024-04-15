@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.002334351, g: 0.0012338969, b: 0.0011799684, a: 1}
+  m_IndirectSpecularColor: {r: 0.0044021965, g: 0.0022985064, b: 0.0021184096, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -258,13 +258,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa1009577b9641fbb70f3169df80a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundTime: 60
-  currentScore: 0
-  displayScore: 0
-  scoreSpeed: 5
-  scoreTarget1: 0
-  scoreTarget2: 0
-  scoreTarget3: 0
+  RoundTime: 60
+  CurrentScore: 0
+  DisplayScore: 0
+  ScoreSpeed: 0
+  ScoreTarget: 1000
+  _uiMan: {fileID: 5323891835247341645}
+  characterExpDataManager: {fileID: 8979018116864647157}
 --- !u!4 &936235955
 Transform:
   m_ObjectHideFlags: 0
@@ -549,10 +549,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1409392682892788144, guid: 9e7c8324876614e5897c3c45379672e0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Menu
-      objectReference: {fileID: 0}
     - target: {fileID: 2131952531029783334, guid: 9e7c8324876614e5897c3c45379672e0, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -638,6 +634,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e7c8324876614e5897c3c45379672e0, type: 3}
+--- !u!114 &5323891835247341645 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 828633555526690727, guid: 9e7c8324876614e5897c3c45379672e0, type: 3}
+  m_PrefabInstance: {fileID: 5323891835247341644}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 286f526c43c11460a99719664d33ac9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6460704202644825114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -747,11 +754,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8573641110431909264, guid: c6caac0eb04cb4357bc624cc4a1c5d64, type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 5323891835247341645}
+    - target: {fileID: 8573641110431909264, guid: c6caac0eb04cb4357bc624cc4a1c5d64, type: 3}
+      propertyPath: _roundManager
+      value: 
+      objectReference: {fileID: 936235954}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6caac0eb04cb4357bc624cc4a1c5d64, type: 3}
+--- !u!114 &8979018116864647157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8573641110431909264, guid: c6caac0eb04cb4357bc624cc4a1c5d64, type: 3}
+  m_PrefabInstance: {fileID: 8979018116864647156}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc3001e0788e4a0fb1f5a6718eb5d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

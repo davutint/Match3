@@ -3,40 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
 	public TMP_Text timeText;
-	public TMP_Text scoreText;
+	public TextMeshProUGUI UiScoreText;
+	public TextMeshProUGUI GoalScore;
 
-	public TMP_Text winScore;
-	public TMP_Text winText;
-	public GameObject winStars1, winStars2, winStars3;
+	public TextMeshProUGUI GainedExpText;
+	public TextMeshProUGUI EndScore;
 
-	public GameObject roundOverScreen;
 
-	private Board theBoard;
+	public TMP_Text EndRounWinText;
+	
+	public GameObject Star;
+	public GameObject RoundOverScreen;
 
-	public string LevelSelect;
+	private Board _theBoard;
 
-	public GameObject pauseScreen;
+	public GameObject PauseScreen;
+	public Slider Slider;
+	public TextMeshProUGUI SliderBarText;
+	public TextMeshProUGUI EndRoundLevelText;
 
 	[Range(0.1f,2f)]
 	[SerializeField]private float _skyboxRotateSpeed;
 	private void Awake()
 	{
-		theBoard = FindObjectOfType<Board>();
+		_theBoard = FindObjectOfType<Board>();
 	}
-
-	// Start is called before the first frame update
-	void Start()
-	{
-		winStars1.SetActive(false);
-		winStars2.SetActive(false);
-		winStars3.SetActive(false);
-	}
-
-	// Update is called once per frame
+	
 	void Update()
 	{
 		RenderSettings.skybox.SetFloat("_Rotation",Time.time*_skyboxRotateSpeed);
@@ -49,20 +46,20 @@ public class UIManager : MonoBehaviour
 
 	public void PauseUnpause()
 	{
-		if(!pauseScreen.activeInHierarchy)
+		if(!PauseScreen.activeInHierarchy)
 		{
-			pauseScreen.SetActive(true);
+			PauseScreen.SetActive(true);
 			Time.timeScale = 0f;
 		} else
 		{
-			pauseScreen.SetActive(false);
+			PauseScreen.SetActive(false);
 			Time.timeScale = 1f;
 		}
 	}
 
    public void ShuffleBoard()
 	{
-		theBoard.ShuffleBoard();
+		_theBoard.ShuffleBoard();
 	}
 
 	public void QuitGame()

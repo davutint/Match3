@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "291580415155",
+    "firebase_url": "https://match-3-543e7-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "match-3-543e7",
+    "storage_bucket": "match-3-543e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291580415155:android:6c12a76a635de80f8574c6",
+        "android_client_info": {
+          "package_name": "com.PixiCorp.Match3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "291580415155-2knvgd714vviff2p92nero31393hqq6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4EpOEhHT7ii4MIyAeA2t7zQVUCVhRNck"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "291580415155-2knvgd714vviff2p92nero31393hqq6l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
