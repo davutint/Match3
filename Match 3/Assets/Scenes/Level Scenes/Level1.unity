@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0043026935, g: 0.0021817484, b: 0.0019627844, a: 1}
+  m_IndirectSpecularColor: {r: 0.0040681735, g: 0.0019180604, b: 0.0016732598, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -264,7 +264,7 @@ MonoBehaviour:
   ScoreSpeed: 0
   ScoreTarget: 1000
   _uiMan: {fileID: 5323891835247341645}
-  characterExpDataManager: {fileID: 8979018116864647157}
+  _characterExpDataManager: {fileID: 8979018116864647157}
 --- !u!4 &936235955
 Transform:
   m_ObjectHideFlags: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fb73310edf04305a4bbfdc3de74a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMatches: []
+  CurrentMatches: []
 --- !u!4 &1159375501
 Transform:
   m_ObjectHideFlags: 0
@@ -354,21 +354,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68cd61bdff1d4651889bcb62436fdcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 5
-  height: 5
-  bgTilePrefab: {fileID: 3556788570682918290, guid: 2e99556fe3b3e404d9be9d49f45298f6, type: 3}
-  gems:
+  Width: 5
+  Height: 5
+  BgTilePrefab: {fileID: 3556788570682918290, guid: 2e99556fe3b3e404d9be9d49f45298f6, type: 3}
+  Gems:
   - {fileID: 7527409748650607723, guid: a7534426e4d2c4e4daf9dca3cc93aa09, type: 3}
   - {fileID: 5955496610250788301, guid: a851b06e4b14746b19e6b67a44197f83, type: 3}
   - {fileID: 3680193642137049021, guid: 5cb01cee5a7364af2a931042c4190938, type: 3}
   - {fileID: 7009204798982342143, guid: 40e24fb481c00413c915cdde72a368ae, type: 3}
-  gemSpeed: 7
-  matchFind: {fileID: 0}
-  currentState: 1
-  bomb: {fileID: 9183360166943843070, guid: 8653260ac2268470c9fc4827f03467d7, type: 3}
-  bombChance: 2
-  roundMan: {fileID: 0}
-  bonusAmount: 0.5
+  - {fileID: 389409902693861286, guid: 87a5037d4397c4f2a8beaace44f3b6b5, type: 3}
+  GemSpeed: 4
+  MatchFind: {fileID: 0}
+  CurrentState: 1
+  Bomb: {fileID: 9183360166943843070, guid: 8653260ac2268470c9fc4827f03467d7, type: 3}
+  BombChance: 2
+  RoundMan: {fileID: 0}
+  BonusAmount: 0.5
 --- !u!4 &1355347772
 Transform:
   m_ObjectHideFlags: 0

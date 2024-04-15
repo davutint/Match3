@@ -165,10 +165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f6bc999f7f95408098754bbfe2c7edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posIndex: {x: 0, y: 0}
+  PosIndex: {x: 0, y: 0}
   board: {fileID: 0}
-  type: 6
-  isMatched: 0
-  destroyEffect: {fileID: 5255713812370775646, guid: 3cee6d6c48e4dba4ba088c5af271fd5a, type: 3}
-  blastSize: 2
-  scoreValue: 10
+  Type: 6
+  IsMatched: 0
+  DestroyEffect: {fileID: 8347670234200498197, guid: 1432aff22883e4a4e9f0a32bec8121f1, type: 3}
+  BlastSize: 2
+  ScoreValue: 10

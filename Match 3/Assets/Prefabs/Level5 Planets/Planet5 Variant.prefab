@@ -17,6 +17,10 @@ PrefabInstance:
       value: Planet5 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3645393088176565095, guid: b167c7cdbcf2448cfbbd74b2a91f7a49, type: 3}
+      propertyPath: Type
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3645393088176565095, guid: b167c7cdbcf2448cfbbd74b2a91f7a49, type: 3}
       propertyPath: type
       value: 12
       objectReference: {fileID: 0}

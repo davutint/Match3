@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc3001e0788e4a0fb1f5a6718eb5d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelConfigSO: {fileID: 11400000, guid: 1e58b3a3a82854ad5b6ad98c2d0650cd, type: 2}
+  LevelConfigSO: {fileID: 11400000, guid: 1e58b3a3a82854ad5b6ad98c2d0650cd, type: 2}
+  _roundManager: {fileID: 0}
+  _uiManager: {fileID: 0}

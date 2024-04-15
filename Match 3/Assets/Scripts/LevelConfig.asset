@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b373b41761b44928ce51eb18fd55dc, type: 3}
   m_Name: LevelConfig
   m_EditorClassIdentifier: 
-  animationCurve:
+  AnimationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -36,5 +36,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxLevel: 100
-  maxRequiredExp: 200000
+  MaxLevel: 100
+  MaxRequiredExp: 200000

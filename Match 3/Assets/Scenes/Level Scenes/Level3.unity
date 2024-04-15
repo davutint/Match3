@@ -264,7 +264,7 @@ MonoBehaviour:
   ScoreSpeed: 0
   ScoreTarget: 3000
   _uiMan: {fileID: 5323891835247341645}
-  characterExpDataManager: {fileID: 1271859224}
+  _characterExpDataManager: {fileID: 1271859224}
 --- !u!4 &936235955
 Transform:
   m_ObjectHideFlags: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09fb73310edf04305a4bbfdc3de74a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentMatches: []
+  CurrentMatches: []
 --- !u!4 &1159375501
 Transform:
   m_ObjectHideFlags: 0
@@ -430,23 +430,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68cd61bdff1d4651889bcb62436fdcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 7
-  height: 7
-  bgTilePrefab: {fileID: 3556788570682918290, guid: 2e99556fe3b3e404d9be9d49f45298f6, type: 3}
-  gems:
+  Width: 7
+  Height: 7
+  BgTilePrefab: {fileID: 3556788570682918290, guid: 2e99556fe3b3e404d9be9d49f45298f6, type: 3}
+  Gems:
   - {fileID: 5926650928700058810, guid: 732ed6f72da21413a8394d835a9a7d42, type: 3}
   - {fileID: 1360757552046002982, guid: 92ecccb91888d44b3aaa181bf2f20a45, type: 3}
   - {fileID: 3316213691970851946, guid: a7bc0ffd85a4640da9a84ebacf56c7a7, type: 3}
   - {fileID: 1342039968740753743, guid: ce9d4f9ddefe047d093eaab0e01f2895, type: 3}
   - {fileID: 3428026115951198707, guid: 3798d1ca016fd4f27a8e2385ab247c49, type: 3}
   - {fileID: 158509735613511349, guid: 00ee1b4a7aa3d4a7ca5e0b4563f10558, type: 3}
-  gemSpeed: 7
-  matchFind: {fileID: 0}
-  currentState: 1
-  bomb: {fileID: 9183360166943843070, guid: 8653260ac2268470c9fc4827f03467d7, type: 3}
-  bombChance: 2
-  roundMan: {fileID: 0}
-  bonusAmount: 0.5
+  GemSpeed: 5
+  MatchFind: {fileID: 0}
+  CurrentState: 1
+  Bomb: {fileID: 9183360166943843070, guid: 8653260ac2268470c9fc4827f03467d7, type: 3}
+  BombChance: 2
+  RoundMan: {fileID: 0}
+  BonusAmount: 0.5
 --- !u!4 &1355347772
 Transform:
   m_ObjectHideFlags: 0

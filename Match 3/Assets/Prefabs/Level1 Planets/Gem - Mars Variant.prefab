@@ -57,6 +57,10 @@ PrefabInstance:
       value: Gem - Mars Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7527409748650607723, guid: a7534426e4d2c4e4daf9dca3cc93aa09, type: 3}
+      propertyPath: Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527409748650607723, guid: a7534426e4d2c4e4daf9dca3cc93aa09, type: 3}
       propertyPath: type
       value: 2
       objectReference: {fileID: 0}

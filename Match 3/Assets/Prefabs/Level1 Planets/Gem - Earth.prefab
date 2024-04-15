@@ -98,13 +98,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f6bc999f7f95408098754bbfe2c7edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posIndex: {x: 0, y: 0}
+  PosIndex: {x: 0, y: 0}
   board: {fileID: 0}
-  type: 0
-  isMatched: 0
-  destroyEffect: {fileID: 8347670234200498197, guid: 1432aff22883e4a4e9f0a32bec8121f1, type: 3}
-  blastSize: 2
-  scoreValue: 10
+  Type: 0
+  IsMatched: 0
+  DestroyEffect: {fileID: 8347670234200498197, guid: 1432aff22883e4a4e9f0a32bec8121f1, type: 3}
+  BlastSize: 2
+  ScoreValue: 10
 --- !u!61 &5346281981219260073
 BoxCollider2D:
   m_ObjectHideFlags: 0

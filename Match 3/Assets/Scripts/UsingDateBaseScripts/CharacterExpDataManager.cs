@@ -56,7 +56,7 @@ public class CharacterExpDataManager : MonoBehaviour
 	}
 	public int IncreasedExp(int newExp)
 	{
-		newExp+=_roundManager.CurrentScore/20;
+		newExp+=_roundManager.CurrentScore/10;
 		return newExp;
 	}
 	

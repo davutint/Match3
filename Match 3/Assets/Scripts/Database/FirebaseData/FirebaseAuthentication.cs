@@ -225,7 +225,7 @@ public class FirebaseAuthentication : MonoBehaviour
 		reference.Child("point").SetValueAsync(0);
 
 		_uiAuth.NameText.text = _userName;
-		FirebaseManager.Instance.GetPlayerLevelData(_uiAuth.GetLevelDataStart);
+		//FirebaseManager.Instance.GetPlayerLevelData(_uiAuth.GetLevelDataStart);
 		_uiAuth.OpenPanel(_uiAuth.GamePanel);
 		
 	}

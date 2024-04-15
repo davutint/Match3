@@ -143,10 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f6bc999f7f95408098754bbfe2c7edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posIndex: {x: 0, y: 0}
+  PosIndex: {x: 0, y: 0}
   board: {fileID: 0}
-  type: 8
-  isMatched: 0
-  destroyEffect: {fileID: 3201789598558818553, guid: 296e8f0aa89012e49acb829890b93d11, type: 3}
-  blastSize: 2
-  scoreValue: 10
+  Type: 8
+  IsMatched: 0
+  DestroyEffect: {fileID: 8347670234200498197, guid: 1432aff22883e4a4e9f0a32bec8121f1, type: 3}
+  BlastSize: 2
+  ScoreValue: 10

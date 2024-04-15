@@ -41,9 +41,13 @@ public class UIAuth : MonoBehaviour
 	private void Start()
 	{
 		NameInput.onValueChanged.AddListener(ChanegeUserNameListener);
-		if (FirebaseManager.Instance.User!=null)
+		if (FirebaseManager.Instance.User!=null||NameText.text!=null)
 		{
 			FirebaseManager.Instance.GetPlayerLevelData(GetLevelDataStart);
+		}
+		else
+		{
+			Debug.Log("kullanıcı null");
 		}
 		
 	}

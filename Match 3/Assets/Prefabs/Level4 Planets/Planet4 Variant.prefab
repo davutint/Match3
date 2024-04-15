@@ -61,6 +61,10 @@ PrefabInstance:
       value: Planet4 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7112812798965819491, guid: 5b12ab521284e4f2c94c44e12d685fb6, type: 3}
+      propertyPath: Type
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112812798965819491, guid: 5b12ab521284e4f2c94c44e12d685fb6, type: 3}
       propertyPath: type
       value: 11
       objectReference: {fileID: 0}
