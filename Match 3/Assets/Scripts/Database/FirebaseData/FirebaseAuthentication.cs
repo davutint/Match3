@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class FirebaseAuthentication : MonoBehaviour
 {
 	[SerializeField] UIAuth _uiAuth;
@@ -16,9 +17,10 @@ public class FirebaseAuthentication : MonoBehaviour
 	{
 		_configuration = new GoogleSignInConfiguration
   		{
-      		WebClientId = _api,
-      		RequestIdToken = true
+	  		WebClientId = _api,
+	  		RequestIdToken = true
   		};
+		
 	}
 	private void Start()
 	{
@@ -39,14 +41,17 @@ public class FirebaseAuthentication : MonoBehaviour
 				if (snapshot.HasChildren)
 				{
 					_uiAuth.NameText.text = snapshot.Child(FirebaseManager.Instance.User.UserId).Child("username").Value.ToString();
+					FirebaseManager.Instance.GetPlayerLevelData(_uiAuth.GetLevelDataStart);
 					_uiAuth.OpenPanel(_uiAuth.GamePanel);
 				}              
 			});
+			
 		}
 		else
 		{
 			_uiAuth.OpenPanel(_uiAuth.LoginPanel);
 		}
+		
 	}
 	public void SingInAnonymous()
 	{
@@ -115,6 +120,7 @@ public class FirebaseAuthentication : MonoBehaviour
 				if (snapshot.HasChildren)
 				{
 					_uiAuth.NameText.text = snapshot.Child(FirebaseManager.Instance.User.UserId).Child("username").Value.ToString();
+					FirebaseManager.Instance.GetPlayerLevelData(_uiAuth.GetLevelDataStart);
 					_uiAuth.OpenPanel(_uiAuth.GamePanel);
 				}
 				else
@@ -151,6 +157,7 @@ public class FirebaseAuthentication : MonoBehaviour
 					if (snapshot.HasChildren)
 					{
 						_uiAuth.NameText.text = snapshot.Child(FirebaseManager.Instance.User.UserId).Child("username").Value.ToString();
+						FirebaseManager.Instance.GetPlayerLevelData(_uiAuth.GetLevelDataStart);
 						_uiAuth.OpenPanel(_uiAuth.GamePanel);
 					}
 					else
@@ -225,7 +232,7 @@ public class FirebaseAuthentication : MonoBehaviour
 		reference.Child("point").SetValueAsync(0);
 
 		_uiAuth.NameText.text = _userName;
-		//FirebaseManager.Instance.GetPlayerLevelData(_uiAuth.GetLevelDataStart);
+		FirebaseManager.Instance.GetPlayerLevelData(_uiAuth.GetLevelDataStart);
 		_uiAuth.OpenPanel(_uiAuth.GamePanel);
 		
 	}

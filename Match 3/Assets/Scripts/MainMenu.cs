@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 
 public class MainMenu : MonoBehaviour
 {
 	
-
 	[Range(0,2)]
 	[SerializeField]private float _skyboxRotateSpeed;
 	public void StartGame(string levelToLoad)

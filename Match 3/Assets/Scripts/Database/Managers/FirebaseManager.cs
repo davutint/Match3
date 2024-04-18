@@ -124,20 +124,85 @@ public class FirebaseManager : MonoBehaviour
 			}
 		});
 	}
-	public void StartLevel(int levelNumber) //round manager level start
-	{
-		Firebase.Analytics.FirebaseAnalytics.LogEvent("level_started", "level_number", (levelNumber-2).ToString());
-	}
+	
+	
+	public void LevelFailEvents(string levelName) //goal scorea erişince
+ 	{
+	 	switch (levelName)
+	 	{
+		case "Level1":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level1_failed", "level_name", levelName);
+			break;
+		case "Level2":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level2_failed", "level_name", levelName);
+			break;
+		case "Level3":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level3_failed", "level_name", levelName);
+			break;
+		case "Level4":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level4_failed", "level_name", levelName);
+			break;
+		case "Level5":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level5_failed", "level_name", levelName);
+			break;
+		default:
+			Debug.LogWarning("Level Name Bulunamadi Veya Yanlis");
+			break;
 
-// Level tamamlandığında
-	public void CompleteLevel(int levelNumber) //goal scorea erişince
-	{
-		Firebase.Analytics.FirebaseAnalytics.LogEvent("level_completed", "level_number", (levelNumber-2).ToString());//Level1 3. sahneden başladığı için -2 dedik
-	}
-// Oyuncu bir bölümü başaramadığında
-	public void FailedLevel(int levelNumber) //goal score erişemeyince
-	{
-		Firebase.Analytics.FirebaseAnalytics.LogEvent("level_failed", "level_number", (levelNumber-2).ToString());
-	}
+		}
+
+ 	}
+	public void LevelCompletedEvents(string levelName) //goal scorea erişince
+ 	{
+	 	switch (levelName)
+	 	{
+		case "Level1":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level1_completed", "level_name", levelName);
+			break;
+		case "Level2":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level2_completed", "level_name", levelName);
+			break;
+		case "Level3":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level3_completed", "level_name", levelName);
+			break;
+		case "Level4":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level4_completed", "level_name", levelName);
+			break;
+		case "Level5":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level5_completed", "level_name", levelName);
+			break;
+		default:
+			Debug.LogWarning("Level Name Bulunamadi Veya Yanlis");
+			break;
+
+		}
+
+ 	}
+	public void LevelStartedEvents(string levelName) //goal scorea erişince
+ 	{
+	 	switch (levelName)
+	 	{
+		case "Level1":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level1_started", "level_name", levelName);
+			break;
+		case "Level2":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level2_started", "level_name", levelName);
+			break;
+		case "Level3":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level3_started", "level_name", levelName);
+			break;
+		case "Level4":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level4_started", "level_name", levelName);
+			break;
+		case "Level5":
+			Firebase.Analytics.FirebaseAnalytics.LogEvent("level5_started", "level_name", levelName);
+			break;
+		default:
+			Debug.LogWarning("Level Name Bulunamadi Veya Yanlis");
+			break;
+
+		}
+
+ 	}
 	
 }

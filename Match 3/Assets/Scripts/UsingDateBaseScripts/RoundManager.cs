@@ -19,6 +19,7 @@ public class RoundManager : MonoBehaviour
 	public float ScoreSpeed;
 
 	int _scene;
+	string _sceneName;
 	public int ScoreTarget;
 	[SerializeField]private UIManager _uiMan;
 	
@@ -34,7 +35,8 @@ public class RoundManager : MonoBehaviour
 		
 		_uiMan.GoalScore.SetText("Score Goal: "+ScoreTarget);
 		_scene=SceneManager.GetActiveScene().buildIndex;
-		FirebaseManager.Instance.StartLevel(_scene);
+		_sceneName=SceneManager.GetActiveScene().name;
+		FirebaseManager.Instance.LevelStartedEvents(_sceneName);
 	}
 	
 	void Update()
@@ -79,7 +81,7 @@ public class RoundManager : MonoBehaviour
 		{
 			_uiMan.EndRounWinText.text = "Congratulations!You have completed the section! ";
 			_uiMan.EndScore.SetText("Your Point:  "+CurrentScore.ToString());
-			FirebaseManager.Instance.CompleteLevel(_scene); //analyticse level kazanıldığını yolluyoruz
+			FirebaseManager.Instance.LevelCompletedEvents(_sceneName); //analyticse level kazanıldığını yolluyoruz
 			_uiMan.Star.SetActive(true);
 		
 			
@@ -88,7 +90,7 @@ public class RoundManager : MonoBehaviour
 		{
 			_uiMan.EndScore.SetText("Your Point:  "+CurrentScore.ToString());
 			_uiMan.EndRounWinText.text = "Oh no! You did not reach enough scores! Try again?";
-			FirebaseManager.Instance.FailedLevel(_scene);
+			FirebaseManager.Instance.LevelFailEvents(_sceneName);
 		}
 
 		SFXManager.Instance.PlayRoundOver();
@@ -112,14 +114,14 @@ public class RoundManager : MonoBehaviour
 		switch (_scene)//3,4,5,6
 		{
 			case 3:
-			FirebaseManager.Instance.StartLevel(_scene);
+			
 			if (CurrentScore>level1HS)//eski yüksek skor şu anki skordan küçükmü diye kontrol ediyoruz küçükse yeni skoru firebase e gönderiyoruz
 			{
 				FirebaseManager.Instance.SetPlayerData("lvl_1",CurrentScore);//yeni yüksek skor
 			}
 			break;
 			case 4:
-			FirebaseManager.Instance.StartLevel(_scene);
+			
 			if (CurrentScore>level2HS)//eski yüksek skor şu anki skordan küçükmü diye kontrol ediyoruz küçükse yeni skoru firebase e gönderiyoruz
 			{
 				FirebaseManager.Instance.SetPlayerData("lvl_2",CurrentScore);//yeni yüksek skor
@@ -127,14 +129,14 @@ public class RoundManager : MonoBehaviour
 			
 			break;
 			case 5:
-			FirebaseManager.Instance.StartLevel(_scene);
+			
 			if (CurrentScore>level3HS)//eski yüksek skor şu anki skordan küçükmü diye kontrol ediyoruz küçükse yeni skoru firebase e gönderiyoruz
 			{
 				FirebaseManager.Instance.SetPlayerData("lvl_3",CurrentScore);//yeni yüksek skor
 			}
 			break;
 			case 6:
-			FirebaseManager.Instance.StartLevel(_scene);
+			
 			if (CurrentScore>level4HS)//eski yüksek skor şu anki skordan küçükmü diye kontrol ediyoruz küçükse yeni skoru firebase e gönderiyoruz
 			{
 				FirebaseManager.Instance.SetPlayerData("lvl_4",CurrentScore);//yeni yüksek skor

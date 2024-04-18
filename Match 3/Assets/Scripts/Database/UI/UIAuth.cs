@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,17 +39,11 @@ public class UIAuth : MonoBehaviour
 	
 	private int _requiredExperience;
 	[SerializeField] private FirebaseAuthentication _firebaseAuthentication;
+	
+	
 	private void Start()
 	{
 		NameInput.onValueChanged.AddListener(ChanegeUserNameListener);
-		if (FirebaseManager.Instance.User!=null||NameText.text!=null)
-		{
-			FirebaseManager.Instance.GetPlayerLevelData(GetLevelDataStart);
-		}
-		else
-		{
-			Debug.Log("kullanıcı null");
-		}
 		
 	}
 	public void ChanegeUserNameListener(string text)
@@ -99,4 +94,10 @@ public class UIAuth : MonoBehaviour
 		return _requiredExperience;
 		
 	}
+	
+	public void ChangeStateGameMenu()
+	{
+		
+	}
+	
 }
