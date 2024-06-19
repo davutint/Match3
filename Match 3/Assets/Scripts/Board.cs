@@ -33,9 +33,12 @@ public  class Board : MonoBehaviour
 	private float _bonusMulti;//ard arda patlattığımızda puanımız bu çarpana göre çarpılıp artıyor
 	public float BonusAmount = .5f;
 
+	[SerializeField]
+	private int scoreMultiplayer=10;
 	private BoardLayout _boardLayout;
 	private Gem[,] _layoutStore;
 
+	
 	private void Awake()
 	{
 		MatchFind = FindObjectOfType<MatchFinder>();
@@ -140,17 +143,17 @@ public  class Board : MonoBehaviour
 			{
 				if(AllGems[pos.x, pos.y].Type == GemType.bomb)
 				{
-					SFXManager.Instance.PlayExplode();
+					
 				} else if (AllGems[pos.x, pos.y].Type == GemType.stone)//şimdilik gerek yok belki sonra ekleriz
 				{
-					SFXManager.Instance.PlayStoneBreak();
+					
 				} else
 				{
-					SFXManager.Instance.PlayGemBreak();
+					
 				}
 
 				Instantiate(AllGems[pos.x, pos.y].DestroyEffect, new Vector2(pos.x, pos.y), Quaternion.identity);
-				//roundMan.roundTime+=0.6f; oyun sonsuza kadar sürüyor, iptal..
+				RoundMan.RoundTime+=0.3f;
 				Destroy(AllGems[pos.x, pos.y].gameObject);
 				AllGems[pos.x, pos.y] = null;
 			}
@@ -307,11 +310,12 @@ public  class Board : MonoBehaviour
 
 	public void ScoreCheck(Gem gemToCheck)
 	{
-		RoundMan.CurrentScore += gemToCheck.ScoreValue;
+		//RoundMan.CurrentScore += gemToCheck.ScoreValue;
+		RoundMan.CurrentScore+=(int)gemToCheck.returnGemType()*scoreMultiplayer;
 
 		if(_bonusMulti > 0)
 		{
-			float bonusToAdd = gemToCheck.ScoreValue * _bonusMulti * BonusAmount;
+			float bonusToAdd =(int) gemToCheck.returnGemType()*scoreMultiplayer * _bonusMulti * BonusAmount;
 			RoundMan.CurrentScore += Mathf.RoundToInt(bonusToAdd);
 		}
 		

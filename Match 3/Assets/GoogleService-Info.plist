@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCozg0r54_gfiRt49Dv2JHqnu8JY4pFk6c</string>
+	<key>GCM_SENDER_ID</key>
+	<string>51164166666</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.PixiCorp.Match3ThePlanets</string>
+	<key>PROJECT_ID</key>
+	<string>match-the-planets</string>
+	<key>STORAGE_BUCKET</key>
+	<string>match-the-planets.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:51164166666:ios:522fe339525df63662fdf3</string>
+</dict>
+</plist>

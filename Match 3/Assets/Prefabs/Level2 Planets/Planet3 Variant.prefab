@@ -10,11 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4577130811158443544, guid: 52a13ebc1d0c44f8387455cb53297c00, type: 3}
       propertyPath: Type
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4577130811158443544, guid: 52a13ebc1d0c44f8387455cb53297c00, type: 3}
       propertyPath: type
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577130811158443544, guid: 52a13ebc1d0c44f8387455cb53297c00, type: 3}
+      propertyPath: ScoreValue
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 4577130811158443544, guid: 52a13ebc1d0c44f8387455cb53297c00, type: 3}
       propertyPath: destroyEffect

@@ -54,11 +54,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5926650928700058810, guid: 732ed6f72da21413a8394d835a9a7d42, type: 3}
       propertyPath: Type
-      value: 11
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5926650928700058810, guid: 732ed6f72da21413a8394d835a9a7d42, type: 3}
       propertyPath: type
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5926650928700058810, guid: 732ed6f72da21413a8394d835a9a7d42, type: 3}
+      propertyPath: ScoreValue
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 7232525077945830750, guid: 732ed6f72da21413a8394d835a9a7d42, type: 3}
       propertyPath: m_Sprite

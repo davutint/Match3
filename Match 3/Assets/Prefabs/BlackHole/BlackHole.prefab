@@ -167,8 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PosIndex: {x: 0, y: 0}
   board: {fileID: 0}
-  Type: 6
+  Type: 7
   IsMatched: 0
-  DestroyEffect: {fileID: 8347670234200498197, guid: 1432aff22883e4a4e9f0a32bec8121f1, type: 3}
+  DestroyEffect: {fileID: 3986867561840983646, guid: bd171846920e84e248d95b743bdb3ed2, type: 3}
   BlastSize: 2
-  ScoreValue: 10

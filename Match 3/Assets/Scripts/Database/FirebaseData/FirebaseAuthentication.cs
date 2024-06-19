@@ -1,4 +1,4 @@
-using Firebase.Auth;
+/*using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Extensions;
 using Google;
@@ -24,7 +24,7 @@ public class FirebaseAuthentication : MonoBehaviour
 	}
 	private void Start()
 	{
-		CheckUser();
+		CheckUser();// bu daha önce giriş yapıldıysa o kullanıcıyı tutmaya yarıyor. Biz buraya apple auth yapmalıyız.
 	}
 	private void CheckUser()
 	{
@@ -217,6 +217,8 @@ public class FirebaseAuthentication : MonoBehaviour
 			}
 		});
 	}
+	
+	
 	public void SetUserName()
 	{
 		DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference.Child("Userss").Child(FirebaseManager.Instance.User.UserId);
@@ -245,4 +247,4 @@ public class FirebaseAuthentication : MonoBehaviour
 			_uiAuth.OpenPanel(_uiAuth.LoginPanel);
 		}
 	}
-}
+}*/

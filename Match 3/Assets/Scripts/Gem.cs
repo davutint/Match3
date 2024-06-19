@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum GemType { earth, jupiter, mars, neptune, uranus, venus,bomb, stone,planet1,planet2,planet3,planet4,planet5,planet6}
+public enum GemType { planet1=1,planet2,planet3,planet4,planet5,planet6,bomb, stone}
 [RequireComponent(typeof(BoxCollider2D))]
 public class Gem : MonoBehaviour
 {
@@ -30,9 +30,12 @@ public class Gem : MonoBehaviour
 
 	public int BlastSize = 2;
 
-	public int ScoreValue = 10;
+	//public int ScoreValue = 10;
 
-   
+   public GemType returnGemType()
+   {
+		return Type;
+   }
 	void Update()
 	{
 		if (Vector2.Distance(transform.position, PosIndex) > .01f)

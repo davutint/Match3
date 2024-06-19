@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+using System.Linq;
+using Apple.GameKit;
+using Apple.GameKit.Leaderboards;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 public class RoundManager : MonoBehaviour
 {
@@ -16,9 +16,10 @@ public class RoundManager : MonoBehaviour
 
 	public int CurrentScore;
 	public float DisplayScore;
-	public float ScoreSpeed;
+	public float ScoreSpeed=5;
 
 	int _scene;
+	int lastHighScore;
 	string _sceneName;
 	public int ScoreTarget;
 	[SerializeField]private UIManager _uiMan;
@@ -33,10 +34,17 @@ public class RoundManager : MonoBehaviour
 	private void Start()
 	{
 		
-		_uiMan.GoalScore.SetText("Score Goal: "+ScoreTarget);
+		
 		_scene=SceneManager.GetActiveScene().buildIndex;
 		_sceneName=SceneManager.GetActiveScene().name;
-		FirebaseManager.Instance.LevelStartedEvents(_sceneName);
+		//FirebaseManager.Instance.LevelStartedEvents(_sceneName);
+		if (_scene!=2)
+		{
+			ScoreTarget=PlayerPrefs.GetInt("HighScore",1);
+			
+		}
+		
+		_uiMan.GoalScore.SetText("Score Goal: "+ScoreTarget);
 	}
 	
 	void Update()
@@ -61,27 +69,21 @@ public class RoundManager : MonoBehaviour
 
 		_uiMan.timeText.text = RoundTime.ToString("0.0") + "s";
 
-		//DisplayScore = Mathf.Lerp(DisplayScore, CurrentScore, ScoreSpeed * Time.deltaTime);//animasyonlu şekilde skoru arttırıyoruz
-		_uiMan.UiScoreText.SetText(CurrentScore.ToString());//decimal şekilde artmasını engellemek için bunu kullandım
+		DisplayScore = Mathf.Lerp(DisplayScore, CurrentScore, ScoreSpeed * Time.deltaTime);//animasyonlu şekilde skoru arttırıyoruz
+		_uiMan.UiScoreText.SetText(DisplayScore.ToString("0"));//decimal şekilde artmasını engellemek için bunu kullandım
 	}
 	
 	
 
 	private void WinCheck()//burada yıldız mevzusunu atıp level unlocka refactor edeceğim
 	{
-		FirebaseManager.Instance.GetPlayerLevelHighScores(ChechHighScore);// firebase kullanarak highscore kontrolü
-		_characterExpDataManager.SetFireBaseLevelUpAndExperience();//karaktere xp veriyoruz ve leveli duruma göre arttırıyoruz
-		
-		
-		
 		_uiMan.RoundOverScreen.SetActive(true);
 
-		
 		if(CurrentScore >= ScoreTarget)
 		{
 			_uiMan.EndRounWinText.text = "Congratulations!You have completed the section! ";
 			_uiMan.EndScore.SetText("Your Point:  "+CurrentScore.ToString());
-			FirebaseManager.Instance.LevelCompletedEvents(_sceneName); //analyticse level kazanıldığını yolluyoruz
+			
 			_uiMan.Star.SetActive(true);
 		
 			
@@ -90,14 +92,43 @@ public class RoundManager : MonoBehaviour
 		{
 			_uiMan.EndScore.SetText("Your Point:  "+CurrentScore.ToString());
 			_uiMan.EndRounWinText.text = "Oh no! You did not reach enough scores! Try again?";
-			FirebaseManager.Instance.LevelFailEvents(_sceneName);
+			
 		}
+		HighScoreCheck();
+		
+	}
+	private void HighScoreCheck()
+	{
+		int lastHighScore=PlayerPrefs.GetInt("HighScore",1);
+		if (CurrentScore>lastHighScore)
+		{
+			PlayerPrefs.SetInt("HighScore",CurrentScore);
+		}
+		OnReportLeaderboardScore();
+		//apple game center'a scoru yolla
+	}
+	
+	public async void OnReportLeaderboardScore()
+	{
+		var leaderboards = await GKLeaderboard.LoadLeaderboards();
+		var leaderboard = leaderboards.First(l => l.BaseLeaderboardId == "MatchThePlanetsLB");
 
-		SFXManager.Instance.PlayRoundOver();
+		await leaderboard.SubmitScore(CurrentScore, 0, GKLocalPlayer.Local);
+
+
+
+		var scores = await leaderboard.LoadEntries(GKLeaderboard.PlayerScope.Global, GKLeaderboard.TimeScope.AllTime, 0, 100);
+
+		Debug.LogError($"my score: {scores.LocalPlayerEntry.Score}");
+
+		foreach (var score in scores.Entries)
+		{
+			Debug.LogError($"score: {score.Score} by {score.Player.DisplayName}");
+		}
 	}
 	
 	
-	public void ChechHighScore(int lvl_1,int lvl_2,int lvl_3,int lvl_4,int point)// level unlock için yüksek skoreları kaydediyoruz, ayrıca ilerde de lazım olabilir
+	/*public void ChechHighScore(int lvl_1,int lvl_2,int lvl_3,int lvl_4,int point)// level unlock için yüksek skoreları kaydediyoruz, ayrıca ilerde de lazım olabilir
 	{
 		
 		int level1HS=lvl_1;
@@ -145,5 +176,5 @@ public class RoundManager : MonoBehaviour
 			default:
 			break;
 		}
-	}
+	}*/
 }

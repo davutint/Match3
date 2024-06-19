@@ -4,44 +4,36 @@ using UnityEngine;
 
 public class SFXManager : MonoBehaviour
 {
-    public static SFXManager Instance;
+	public static SFXManager Instance;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+	
+	
+	private void Awake()
+	{
+		Instance = this;
+	}
+	
 
-    public AudioSource gemSound, explodeSound, stoneSound, roundOverSound;
+	public AudioSource levelMusic;
 
-    public void PlayGemBreak()
-    {
-        gemSound.Stop();
+	
+	public void AnaSesCal()
+	{
+		levelMusic.Play();
+	}
+	public void AnaSesDurdur()
+	{
+		levelMusic.Stop();
+	}
+	
+	/*public void PlayGemBreak()
+	{
+		gemSound.Stop();
 
-        gemSound.pitch = Random.Range(.8f, 1.2f);
+		gemSound.pitch = Random.Range(.8f, 1.2f);
 
-        gemSound.Play();
-    }
+		gemSound.Play();
+	}*/
 
-    public void PlayExplode()
-    {
-        explodeSound.Stop();
-
-        explodeSound.pitch = Random.Range(.8f, 1.2f);
-
-        explodeSound.Play();
-    }
-
-    public void PlayStoneBreak()
-    {
-        stoneSound.Stop();
-
-        stoneSound.pitch = Random.Range(.8f, 1.2f);
-
-        stoneSound.Play();
-    }
-
-    public void PlayRoundOver()
-    {
-        roundOverSound.Play();
-    }
+	
 }

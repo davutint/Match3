@@ -1,4 +1,4 @@
-using Firebase.Database;
+/*using Firebase.Database;
 using Firebase.Extensions;
 using System.Linq;
 using System;
@@ -47,5 +47,5 @@ public class LeaderboardFirebaseProvider : LeaderboardProvider
         DatabaseReference reference = FirebaseDatabase.DefaultInstance.RootReference.Child("Userss").Child(FirebaseManager.Instance.User.UserId);
         reference.Child("point").SetValueAsync(score);
         //reference.Child("level").SetValueAsync(1);  //bunu firebasemanagerda yapmıştık
-    }     
-}
+    }
+}*/

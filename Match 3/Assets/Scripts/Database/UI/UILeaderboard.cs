@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 
 using TMPro;
 using UnityEngine;
@@ -53,4 +53,4 @@ public class UILeaderboard : MonoBehaviour
 		_leaderboardPanel.SetActive(false);
 	}
 	
-}
+}*/

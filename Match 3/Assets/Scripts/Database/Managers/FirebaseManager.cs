@@ -1,4 +1,4 @@
-using Firebase;
+/*using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Extensions;
@@ -205,4 +205,4 @@ public class FirebaseManager : MonoBehaviour
 
  	}
 	
-}
+}*/

@@ -13,12 +13,12 @@ public class CharacterExpDataManager : MonoBehaviour
 	[SerializeField]UIManager _uiManager;
 	private void Awake()
 	{
-		FirebaseManager.Instance.GetPlayerLevelData(GetLevelDataStart);
+		//FirebaseManager.Instance.GetPlayerLevelData(GetLevelDataStart);
 	}
 	
 	public void SetFireBaseLevelUpAndExperience()// HER BÖLÜM SONUNDA ÇAĞIR
 	{
-		FirebaseManager.Instance.GetPlayerLevelData(GetLevelData);
+		//FirebaseManager.Instance.GetPlayerLevelData(GetLevelData);
 
 	}
 	
@@ -39,7 +39,7 @@ public class CharacterExpDataManager : MonoBehaviour
 		if (newExp>=RequiredExperience(_level))//Level Up
 		{
 			_level++;
-			FirebaseManager.Instance.SetPlayerData("level",_level);
+			//FirebaseManager.Instance.SetPlayerData("level",_level);
 			_uiManager.Slider.maxValue=RequiredExperience(_level);
 			_uiManager.EndRoundLevelText.text=_level.ToString();
 
@@ -47,7 +47,7 @@ public class CharacterExpDataManager : MonoBehaviour
 		
 		
 	
-		FirebaseManager.Instance.SetPlayerData("currentxp",newExp);// Oyuncuya exp ver
+		//FirebaseManager.Instance.SetPlayerData("currentxp",newExp);// Oyuncuya exp ver
 		_uiManager.Slider.maxValue=RequiredExperience(_level);
 		_uiManager.Slider.value=newExp;
 		_uiManager.SliderBarText.text=newExp+"/"+_uiManager.Slider.maxValue.ToString();//eğer slider düzgün gözükürse anamenü için neededxp kısmınıda çekebiliriz
